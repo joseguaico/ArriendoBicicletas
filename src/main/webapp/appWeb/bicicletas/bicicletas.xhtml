@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html [
+    <!ENTITY nbsp "&#160;"> 
+]>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+
+        <ui:composition template="./../../templates/mainTemplate.xhtml">
+
+            <ui:define name="tituloPagina">
+               Bicicletas
+            </ui:define>
+            
+                        
+            <ui:define name="menuLateralSelect">
+               
+                <div id="menuDiv" class="main-menu">
+                    <ul id="side-main-menu" class="side-menu list-unstyled"> 
+                        <li class=""><a href="#{facesContext.externalContext.requestContextPath}/appWeb/index.xhtml"> <i class="icon-home"></i><span>Inicio</span></a></li>
+                        <li class=""> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/reservas/reservas.xhtml"><i class="fa fa-wpforms"></i><span>Reservas</span></a></li>
+                        <li class=""> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/arriendos.xhtml"><i class="fa fa-list-alt "></i><span>Arriendos</span></a></li>
+                        <li class=""> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/clientes/clientes.xhtml"> <i class="fa fa-group"> </i><span>Clientes</span></a></li>
+                        <li class="active"> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/bicicletas/bicicletas.xhtml"> <i class="fa fa-bicycle"></i><span>Bicicletas</span></a></li>
+                    </ul>
+                </div>                
+                
+            </ui:define>
+
+            <ui:define name="contenidoPrincipal">
+                
+                <!-- Titulo -->
+                <div class="breadcrumb-holder">   
+                    <div class="container-fluid">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/index.xhtml">Inicio</a></li>
+                            <li class="breadcrumb-item active">Bicicletas</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                
+                <div class="ui-fluid"> 
+                    
+                    
+                    <!-- Filtros de busqueda -->
+                    <h:form id="formFiltrosBusqueda" class="panelGridCenter">
+                    
+                        <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank">
+                            
+                            <h:outputLabel for="ddlMarcaBusq" value="Marca " />
+
+                            <p:selectOneMenu id="ddlMarcaBusq" value="#{bicicletasBean.marcaBusqSelected}">
+                                <f:selectItems value="#{bicicletasBean.marcasBusq}" var="m"
+                                               itemLabel="#{m.descripcion}" itemValue="#{m.idMarca}"/>
+                            </p:selectOneMenu> 
+
+                            <h:outputLabel for="txtModeloBusq" value="Descripción: " />
+                            <p:inputText id="txtModeloBusq" value="#{bicicletasBean.modeloBusq}"  />
+
+                            <h:inputHidden />
+                            <p:commandButton id="btnBuscar" value="Buscar" style=" width: auto !important; display: flex;"
+                                             actionListener="#{bicicletasBean.onBtnBuscar_Click}" ajax="true"  >
+                            </p:commandButton>
+                            
+                        
+                         </p:panelGrid>
+                    
+                    </h:form>
+
+                    <!-- Grilla detalle -->
+                    <h:form id="formGrilla" style="width: 100%;" styleClass="divCenter panelGridCenter">
+
+                        <!--  GRILLA -->
+                        <p:panel id="panelGrilla" visible="true" >
+                            <p:dataTable id="dtPrincipal" widgetVar="dtPrincipal" var="b" value="#{bicicletasBean.bicicletas}" 
+                                    selectionMode="single" 
+                                    rowSelectMode="add"
+                                    rowKey="#{b.idBicicleta}" emptyMessage="No se encontraron registros"
+                                    paginator="true"
+                                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    rowsPerPageTemplate="5,10,15"
+                                    rows="10"
+                                    >
+                                <p:column style="text-align: center; width: 6em; padding: 2px;" class="mi-state-highlight">
+                                    
+                                   
+
+                                </p:column>
+
+                                <p:column headerText="ID Bicicleta" class="mi-state-highlight" >
+                                    <h:outputText value="#{b.idBicicleta}" />
+                                </p:column>
+                                
+                                <p:column headerText="Marca" class="mi-state-highlight" >
+                                    <h:outputText value="#{b.marca.descripcion}" />
+                                </p:column>
+
+                                <p:column headerText="Tipo" class="mi-state-highlight" >
+                                    <h:outputText value="#{b.tipoBicicleta.descripcion}" />
+                                </p:column>
+
+                                <p:column headerText="Modelo" class="mi-state-highlight" >
+                                    <h:outputText value="#{b.modelo}" />
+                                </p:column>
+                                
+                                <p:column headerText="Precio" class="mi-state-highlight" >
+                                    <h:outputText value="$ #{b.obtenerPrecioConFormato()}" />
+                                </p:column>
+                                
+                                
+                            </p:dataTable>
+                        </p:panel>
+                        
+
+                    </h:form>
+                        
+                    
+                </div>
+           
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

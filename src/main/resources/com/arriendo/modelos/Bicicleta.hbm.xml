@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+    <class name="com.arriendo.modelos.Bicicleta" table="bicicleta" catalog="bd_bicicletas" optimistic-lock="version">
+        <id name="idBicicleta" type="int">
+            <column name="ID_Bicicleta" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="estadoBicicleta" class="com.arriendo.modelos.EstadoBicicleta" fetch="select">
+            <column name="ID_Estado" not-null="true" />
+        </many-to-one>
+        <many-to-one name="marca" class="com.arriendo.modelos.Marca" fetch="select">
+            <column name="ID_Marca" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tipoBicicleta" class="com.arriendo.modelos.TipoBicicleta" fetch="select">
+            <column name="ID_TipoBicicleta" not-null="true" />
+        </many-to-one>
+        <property name="modelo" type="string">
+            <column name="Modelo" length="45" />
+        </property>
+        <property name="precio" type="java.lang.Integer">
+            <column name="Precio" />
+        </property>
+    </class>
+</hibernate-mapping>

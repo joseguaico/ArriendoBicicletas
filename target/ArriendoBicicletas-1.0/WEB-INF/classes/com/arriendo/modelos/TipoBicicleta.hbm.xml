@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.arriendo.modelos.TipoBicicleta" table="tipo_bicicleta" catalog="bd_bicicletas" optimistic-lock="version">
+        <id name="idTipoBicicleta" type="int">
+            <column name="ID_TipoBicicleta" />
+            <generator class="assigned" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="Descripcion" length="70" not-null="true" />
+        </property>
+      
+    </class>
+</hibernate-mapping>

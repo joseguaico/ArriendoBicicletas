@@ -1,0 +1,31 @@
+/* your styles go here */
+
+.ui-selectonemenu label.ui-selectonemenu-label{
+   width:98% !important;
+}
+.ui-selectonemenu{
+    padding-right: 0 !important;
+    min-width: 0 !important;
+}
+.ui-selectonemenu label {
+    width: auto !important;
+}
+.panelGridCenter {
+    margin: 0 auto;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.panelGridCenter td,.panelGridCenter tr {
+    text-align: center;
+    vertical-align: middle !important;
+}
+.divCenter{
+    text-align: center;    
+    margin-top: 5px;
+}
+
+.sin-bordes{
+    border-radius: 0px !important; 
+    margin: 0px !important;
+}
