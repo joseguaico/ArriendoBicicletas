@@ -42,7 +42,62 @@
                 </div>
                 
 
-                
+                <div class="ui-fluid"> 
+                    <!-- Grilla detalle -->
+                    <h:form id="formGrilla" style="width: 100%;" styleClass="divCenter panelGridCenter">
+                        <!--  GRILLA -->
+                        <p:panel id="panelGrilla" visible="true" >
+                            <p:dataTable id="dtPrincipal" widgetVar="dtPrincipal" var="r" value="#{reservasBean.reservas}" 
+                                    selectionMode="single" 
+                                    rowSelectMode="add"
+                                    rowKey="#{r.idReserva}" emptyMessage="No se encontraron registros"
+                                    paginator="true"
+                                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    rowsPerPageTemplate="5,10,15"
+                                    rows="10"
+                                    >
+                                <p:column style="text-align: center; width: 6em; padding: 2px;" class="mi-state-highlight">
+                                </p:column>
+
+                                <p:column headerText="ID Bicicleta" class="mi-state-highlight" >
+                                    <h:outputText value="#{r.idReserva}" />
+                                </p:column>
+                                 
+                                <p:column headerText="ID Bicicleta" class="mi-state-highlight" >
+                                    <h:outputText value="#{r.idBicicleta}" />
+                                </p:column>
+
+                                <p:column headerText="Rut Cliente" class="mi-state-highlight" >
+                                    <h:outputText value="#{r.rutCliente}" />
+                                </p:column>
+
+                                <p:column headerText="Fecha Solicitud" class="mi-state-highlight" >
+                                    <h:outputText value="#{r.fechaSolicitud}" />
+                                </p:column>
+                                
+                                <p:column headerText="Fecha Retiro" class="mi-state-highlight" >
+                                    <h:outputText value="#{r.fechaRetiro}" />
+                                </p:column>
+                                
+                                <p:column headerText="Sucursal Retiro" class="mi-state-highlight" >
+                                    <h:outputText value="#{r.idSucursalRetiro}" />
+                                </p:column>
+                                
+                                <p:column headerText="Fecha Devolución" class="mi-state-highlight" >
+                                    <h:outputText value="#{r.fechaDevolucion}" />
+                                </p:column>
+                                
+                                <p:column headerText="Sucursal Devolución" class="mi-state-highlight" >
+                                    <h:outputText value="#{r.sucursalDevolucion}" />
+                                </p:column>
+                            </p:dataTable>
+                        </p:panel>
+                    </h:form>
+                    
+                    
+                    <!-- form nueva reserva -->
+                    
+                </div>
                 
             </ui:define>
 

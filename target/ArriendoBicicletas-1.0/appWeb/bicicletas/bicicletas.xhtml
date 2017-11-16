@@ -73,7 +73,6 @@
 
                     <!-- Grilla detalle -->
                     <h:form id="formGrilla" style="width: 100%;" styleClass="divCenter panelGridCenter">
-
                         <!--  GRILLA -->
                         <p:panel id="panelGrilla" visible="true" >
                             <p:dataTable id="dtPrincipal" widgetVar="dtPrincipal" var="b" value="#{bicicletasBean.bicicletas}" 
@@ -86,9 +85,6 @@
                                     rows="10"
                                     >
                                 <p:column style="text-align: center; width: 6em; padding: 2px;" class="mi-state-highlight">
-                                    
-                                   
-
                                 </p:column>
 
                                 <p:column headerText="ID Bicicleta" class="mi-state-highlight" >
@@ -110,19 +106,11 @@
                                 <p:column headerText="Precio" class="mi-state-highlight" >
                                     <h:outputText value="$ #{b.obtenerPrecioConFormato()}" />
                                 </p:column>
-                                
-                                
                             </p:dataTable>
                         </p:panel>
-                        
-
                     </h:form>
-                        
-                    
                 </div>
-           
             </ui:define>
-
         </ui:composition>
 
     </body>

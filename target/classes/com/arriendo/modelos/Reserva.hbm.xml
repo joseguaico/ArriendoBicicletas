@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+
+    <class name="com.arriendo.modelos.Reserva" table="reserva" catalog="bd_bicicletas" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <property name="idReserva" type="string">
+            <column name="ID_Reserva" length="45" />
+        </property>
+        <property name="idBicicleta" type="int">
+            <column name="ID_Bicicleta"/>
+        </property>
+        <property name="rutCliente" type="int">
+            <column name="Rut_Cliente"/>
+        </property>
+        <property name="fechaSolicitud" type="java.sql.Date">
+            <column name="Fecha_Solicitud"/>
+        </property>
+        <property name="fechaRetiro" type="java.sql.Date">
+            <column name="Fecha_Retiro"/>
+        </property>
+        <property name="idSucursalRetiro" type="int">
+            <column name="ID_SucursalRetiro"/>
+        </property>
+        <property name="fechaDevolucion" type="java.sql.Date">
+            <column name="Fecha_Devolucion"/>
+        </property>
+        <property name="sucursalDevolucion" type="int">
+            <column name="ID_SucursalDevolucion"/>
+        </property>
+        <property name="estado" type="int">
+            <column name="Estado"/>
+        </property>
+    </class>
+</hibernate-mapping>
