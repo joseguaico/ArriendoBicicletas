@@ -35,14 +35,87 @@
                 <div class="breadcrumb-holder">   
                     <div class="container-fluid">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/index.xhtml">Inicio</a></li>
-                            <li class="breadcrumb-item active">Clientes</li>
+                            <li class="breadcrumb-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/index.xhtml"><b>Inicio</b></a></li>
+                            <li class="breadcrumb-item active"><b>Clientes</b></li>
                         </ul>
                     </div>
                 </div>
                 
+                <!-- Filtros búsqueda -->
+                <p:panel>
+                    
+                    <h:panelGrid styleClass="divCenter panelGridCenter">                
+                        <h:form id="formBusqueda">
+
+                            <p:outputLabel for="txtRut" class="mi-label" value="Rut :" />
+                            <p:inputNumber id="txtRut" emptyValue="empty" thousandSeparator="" decimalPlaces="0" 
+                                           validatorMessage="*"   maxlength="8" maxValue="99999999" value="#{clientesBean.rutBusq}" />
+                            <p:outputLabel for="txtDv" class="mi-label" value="-" />
+                            <p:inputText id="txtDv" value="#{clientesBean.dvBusq}" maxlength="1" style=" width: 20px;"
+                                        onkeydown="return dvAllowed(event);" onkeypress="return dvAllowed(event);" />
+                            &nbsp;
+
+                            <p:outputLabel for="txtNombres" class="mi-label" value="Nombres: " />
+                            <p:inputText id="txtNombres" value="#{clientesBean.nombresBusq}" />
+
+                            &nbsp;
+
+                            <p:outputLabel for="txtApellidos" class="mi-label" value="Apellidos: " />
+                            <p:inputText id="txtApellidos" value="#{clientesBean.apellidosBusq}" />
+
+                            <p:commandButton id="btnBuscar" value="Buscar"  actionListener="#{clientesBean.onBtnBuscarClick()}">
+                                <p:tooltip for="btnBuscar" value="Realizar búqueda" trackMouse="true" />
+                            </p:commandButton>
+
+                        </h:form>
+                    </h:panelGrid>    
+                    
+                </p:panel>
                 
-               
+                  <!-- GRILLA Y AGREGAR -->
+                    <h:form id="formGrilla" style="width: 90%;" styleClass="divCenter panelGridCenter">
+
+                        <!--  GRILLA -->
+                        <p:dataTable id="dtPrincipal" widgetVar="dtPrincipal" var="c" value="#{clientesBean.clientes}" 
+                                    selectionMode="single" 
+                                    rowSelectMode="add"
+                                    rowKey="#{c.rutCliente}" emptyMessage="No se encontraron registros"
+                                    paginator="true"
+                                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    rowsPerPageTemplate="5,10,15"
+                                    rows="10"
+                                    >
+                            <p:column style="text-align: center; width: 6em; padding: 2px;" class="mi-state-highlight">
+
+                               
+
+                            </p:column>
+
+                            <p:column headerText="Rut" class="mi-state-highlight" >
+                                <h:outputText value="#{c.rutConFormato()}-#{c.dv}" />
+                            </p:column>
+
+                            <p:column headerText="Nombres" class="mi-state-highlight" >
+                                <h:outputText value="#{c.nombres}" />
+                            </p:column>
+
+                            <p:column headerText="Apellidos" class="mi-state-highlight" >
+                                <h:outputText value="#{c.apellidos}" />
+                            </p:column>
+                            
+                            <p:column headerText="Estado" class="mi-state-highlight" >
+                                
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </h:form>
+                
+                
+                
+                
+                
+                
                 
             </ui:define>
 

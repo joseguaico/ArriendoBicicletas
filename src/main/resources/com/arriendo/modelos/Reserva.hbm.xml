@@ -1,41 +1,42 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
-
+<!-- Generated 18-11-2017 19:47:30 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-
     <class name="com.arriendo.modelos.Reserva" table="reserva" catalog="bd_bicicletas" optimistic-lock="version">
-        <id name="id" type="int">
-            <column name="id" />
-            <generator class="increment" />
+        <id name="idReserva" type="int">
+            <column name="ID_Reserva" />
+            <generator class="assigned" />
         </id>
-        <property name="idReserva" type="string">
-            <column name="ID_Reserva" length="45" />
+        <many-to-one name="arriendo" class="com.arriendo.modelos.Arriendo" fetch="select">
+            <column name="ID_Ariendo" />
+        </many-to-one>
+        <many-to-one name="cliente" class="com.arriendo.modelos.Cliente" fetch="select">
+            <column name="Rut_Cliente" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="com.arriendo.modelos.Usuario" fetch="select">
+            <column name="ID_Usuario" not-null="true" />
+        </many-to-one>
+        <property name="fechaSolicitud" type="timestamp">
+            <column name="Fecha_Solicitud" length="19" not-null="true" />
         </property>
-        <property name="idBicicleta" type="int">
-            <column name="ID_Bicicleta"/>
-        </property>
-        <property name="rutCliente" type="int">
-            <column name="Rut_Cliente"/>
-        </property>
-        <property name="fechaSolicitud" type="java.sql.Date">
-            <column name="Fecha_Solicitud"/>
-        </property>
-        <property name="fechaRetiro" type="java.sql.Date">
-            <column name="Fecha_Retiro"/>
+        <property name="fechaRetiro" type="timestamp">
+            <column name="Fecha_Retiro" length="19" not-null="true" />
         </property>
         <property name="idSucursalRetiro" type="int">
-            <column name="ID_SucursalRetiro"/>
+            <column name="ID_Sucursal_Retiro" not-null="true" />
         </property>
-        <property name="fechaDevolucion" type="java.sql.Date">
-            <column name="Fecha_Devolucion"/>
+        <property name="fechaDevolucion" type="timestamp">
+            <column name="Fecha_Devolucion" length="19" not-null="true" />
         </property>
-        <property name="sucursalDevolucion" type="int">
-            <column name="ID_SucursalDevolucion"/>
+        <property name="idSucursalDevolucion" type="int">
+            <column name="ID_Sucursal_Devolucion" not-null="true" />
         </property>
-        <property name="estado" type="int">
-            <column name="Estado"/>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="19" />
+        </property>
+        <property name="estadoSincr" type="java.lang.Byte">
+            <column name="estado_sincr" />
         </property>
     </class>
 </hibernate-mapping>

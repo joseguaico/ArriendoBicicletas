@@ -13,8 +13,7 @@
 
             <ui:define name="tituloPagina">
                Bicicletas
-            </ui:define>
-            
+            </ui:define>            
                         
             <ui:define name="menuLateralSelect">
                
@@ -36,80 +35,76 @@
                 <div class="breadcrumb-holder">   
                     <div class="container-fluid">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/index.xhtml">Inicio</a></li>
-                            <li class="breadcrumb-item active">Bicicletas</li>
+                            <li class="breadcrumb-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/index.xhtml"><b>Inicio</b></a></li>
+                            <li class="breadcrumb-item active"><b>Bicicletas</b></li>
                         </ul>
                     </div>
                 </div>
                 
+                    
+                <h:form id="formBusqueda"  style=" width: 100% !important;">
+
+                    <p:panelGrid styleClass="divCenter panelGridCenter" columnClasses="sin-bordes" layout="grid" columns="6" >
+
+                        <p:outputLabel for="ddlMarcaBusq" value="Marca " />
+                        <p:selectOneMenu id="ddlMarcaBusq" value="#{bicicletasBean.marcaBusqSelected}" style=" width: 100% !important;">
+                            <f:selectItems value="#{bicicletasBean.marcasBusq}" var="m"
+                                       itemLabel="#{m.descripcion}" itemValue="#{m.idMarca}"/>
+                        </p:selectOneMenu> 
+
+
+                        <p:outputLabel for="txtModeloBusq" value="Descripción: " />
+                        <p:inputText id="txtModeloBusq" value="#{bicicletasBean.modeloBusq}" style=" width: 100% !important;" />
+
+                        <p:commandButton id="btnBuscar" value="Buscar" style=" width: auto !important; display: flex;"
+                            actionListener="#{bicicletasBean.onBtnBuscar_Click}" ajax="true"  >
+                        </p:commandButton>
+
+                    </p:panelGrid>
+                </h:form>
+
+                <!-- Grilla detalle -->
+                <h:form id="formGrilla" style="width: 100%;" styleClass="divCenter panelGridCenter">
+                    <!--  GRILLA -->
+                    <p:panel id="panelGrilla" visible="true" >
+                        <p:dataTable id="dtPrincipal" widgetVar="dtPrincipal" var="b" value="#{bicicletasBean.bicicletas}" 
+                                selectionMode="single" 
+                                rowSelectMode="add"
+                                rowKey="#{b.idBicicleta}" emptyMessage="No se encontraron registros"
+                                paginator="true"
+                                paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                rowsPerPageTemplate="5,10,15"
+                                rows="10"
+                                >
+                            <p:column style="text-align: center; width: 6em; padding: 2px;" class="mi-state-highlight">
+                            </p:column>
+
+                            <p:column headerText="ID Bicicleta" class="mi-state-highlight" >
+                                <h:outputText value="#{b.idBicicleta}" />
+                            </p:column>
+
+                            <p:column headerText="Marca" class="mi-state-highlight" >
+                                <h:outputText value="#{b.marca.descripcion}" />
+                            </p:column>
+
+                            <p:column headerText="Tipo" class="mi-state-highlight" >
+                                <h:outputText value="#{b.tipoBicicleta.descripcion}" />
+                            </p:column>
+
+                            <p:column headerText="Modelo" class="mi-state-highlight" >
+                                <h:outputText value="#{b.modelo}" />
+                            </p:column>
+
+                            <p:column headerText="Precio" class="mi-state-highlight" >
+                                <h:outputText value="$ #{b.obtenerPrecioConFormato()}" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
                 
-                <div class="ui-fluid"> 
-                    
-                    
-                    <!-- Filtros de busqueda -->
-                    <h:form id="formFiltrosBusqueda" class="panelGridCenter">
-                    
-                        <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank">
-                            
-                            <h:outputLabel for="ddlMarcaBusq" value="Marca " />
-
-                            <p:selectOneMenu id="ddlMarcaBusq" value="#{bicicletasBean.marcaBusqSelected}">
-                                <f:selectItems value="#{bicicletasBean.marcasBusq}" var="m"
-                                               itemLabel="#{m.descripcion}" itemValue="#{m.idMarca}"/>
-                            </p:selectOneMenu> 
-
-                            <h:outputLabel for="txtModeloBusq" value="Descripción: " />
-                            <p:inputText id="txtModeloBusq" value="#{bicicletasBean.modeloBusq}"  />
-
-                            <h:inputHidden />
-                            <p:commandButton id="btnBuscar" value="Buscar" style=" width: auto !important; display: flex;"
-                                             actionListener="#{bicicletasBean.onBtnBuscar_Click}" ajax="true"  >
-                            </p:commandButton>
-                            
-                        
-                         </p:panelGrid>
-                    
-                    </h:form>
-
-                    <!-- Grilla detalle -->
-                    <h:form id="formGrilla" style="width: 100%;" styleClass="divCenter panelGridCenter">
-                        <!--  GRILLA -->
-                        <p:panel id="panelGrilla" visible="true" >
-                            <p:dataTable id="dtPrincipal" widgetVar="dtPrincipal" var="b" value="#{bicicletasBean.bicicletas}" 
-                                    selectionMode="single" 
-                                    rowSelectMode="add"
-                                    rowKey="#{b.idBicicleta}" emptyMessage="No se encontraron registros"
-                                    paginator="true"
-                                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                    rowsPerPageTemplate="5,10,15"
-                                    rows="10"
-                                    >
-                                <p:column style="text-align: center; width: 6em; padding: 2px;" class="mi-state-highlight">
-                                </p:column>
-
-                                <p:column headerText="ID Bicicleta" class="mi-state-highlight" >
-                                    <h:outputText value="#{b.idBicicleta}" />
-                                </p:column>
-                                
-                                <p:column headerText="Marca" class="mi-state-highlight" >
-                                    <h:outputText value="#{b.marca.descripcion}" />
-                                </p:column>
-
-                                <p:column headerText="Tipo" class="mi-state-highlight" >
-                                    <h:outputText value="#{b.tipoBicicleta.descripcion}" />
-                                </p:column>
-
-                                <p:column headerText="Modelo" class="mi-state-highlight" >
-                                    <h:outputText value="#{b.modelo}" />
-                                </p:column>
-                                
-                                <p:column headerText="Precio" class="mi-state-highlight" >
-                                    <h:outputText value="$ #{b.obtenerPrecioConFormato()}" />
-                                </p:column>
-                            </p:dataTable>
-                        </p:panel>
-                    </h:form>
-                </div>
+                <!--</div>-->
+                
+                
             </ui:define>
         </ui:composition>
 

@@ -1,15 +1,22 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-11-2017 19:47:30 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    
     <class name="com.arriendo.modelos.Marca" table="marca" catalog="bd_bicicletas" optimistic-lock="version">
         <id name="idMarca" type="int">
             <column name="ID_Marca" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="descripcion" type="string">
             <column name="Descripcion" length="45" not-null="true" />
         </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="19" />
+        </property>
+        <property name="estadoSincr" type="java.lang.Byte">
+            <column name="estado_sincr" />
+        </property>
+      
     </class>
 </hibernate-mapping>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-11-2017 19:47:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.arriendo.modelos.Sucursal" table="sucursal" catalog="bd_bicicletas" optimistic-lock="version">
+        <id name="idSucursal" type="int">
+            <column name="ID_Sucursal" />
+            <generator class="assigned" />
+        </id>
+        <property name="descripcionSucursal" type="string">
+            <column name="Descripcion_Sucursal" length="60" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-11-2017 19:47:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.arriendo.modelos.Arriendo" table="arriendo" catalog="bd_bicicletas" optimistic-lock="version">
+        <id name="idArriendo" type="int">
+            <column name="ID_Arriendo" />
+            <generator class="assigned" />
+        </id>
+        <property name="reservacol" type="string">
+            <column name="Reservacol" length="45" />
+        </property>
+        <property name="firmaCliente" type="string">
+            <column name="firma_cliente" length="200" />
+        </property>
+        <property name="firmaOperador" type="string">
+            <column name="firma_operador" length="200" />
+        </property>
+        <property name="fechaFirmaCliente" type="timestamp">
+            <column name="fecha_firma_cliente" length="19" />
+        </property>
+        <property name="fechaFirmaOperador" type="timestamp">
+            <column name="fecha_firma_operador" length="19" />
+        </property>
+        <property name="nombreContrato" type="string">
+            <column name="nombre_contrato" length="45" />
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="19" />
+        </property>
+        <property name="estadoSincr" type="java.lang.Byte">
+            <column name="estado_sincr" />
+        </property>
+        <set name="reservas" table="reserva" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_Ariendo" />
+            </key>
+            <one-to-many class="com.arriendo.modelos.Reserva" />
+        </set>
+    </class>
+</hibernate-mapping>

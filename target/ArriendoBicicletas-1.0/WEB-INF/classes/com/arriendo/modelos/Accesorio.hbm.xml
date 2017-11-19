@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-11-2017 19:47:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.arriendo.modelos.Accesorio" table="accesorio" catalog="bd_bicicletas" optimistic-lock="version">
+        <id name="idAccesorio" type="int">
+            <column name="ID_Accesorio" />
+            <generator class="assigned" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="Descripcion" length="150" not-null="true" />
+        </property>
+        <property name="precio" type="int">
+            <column name="Precio" not-null="true" />
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="fecha_registro" length="19" />
+        </property>
+        <property name="estadoSincr" type="java.lang.Byte">
+            <column name="estado_sincr" />
+        </property>
+    </class>
+</hibernate-mapping>

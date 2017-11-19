@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-11-2017 19:47:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.arriendo.modelos.Cliente" table="cliente" catalog="bd_bicicletas" optimistic-lock="version">
+        <id name="rutCliente" type="int">
+            <column name="Rut_Cliente" />
+            <generator class="assigned" />
+        </id>
+        <property name="dv" type="char">
+            <column name="Dv" length="1" not-null="true" />
+        </property>
+        <property name="nombres" type="string">
+            <column name="Nombres" length="50" not-null="true" />
+        </property>
+        <property name="apellidos" type="string">
+            <column name="Apellidos" length="50" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="45" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="Telefono" length="45" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="Direccion" length="70" not-null="true" />
+        </property>
+        <property name="fechaNacimiento" type="date">
+            <column name="Fecha_Nacimiento" length="10" not-null="true" />
+        </property>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="Fecha_Registro" length="19" not-null="true" />
+        </property>
+        <property name="nacionalidad" type="string">
+            <column name="Nacionalidad" length="50" not-null="true" />
+        </property>
+        <property name="estadoSincr" type="java.lang.Byte">
+            <column name="estado_sincr" />
+        </property>
+        <set name="reservas" table="reserva" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Rut_Cliente" not-null="true" />
+            </key>
+            <one-to-many class="com.arriendo.modelos.Reserva" />
+        </set>
+    </class>
+</hibernate-mapping>

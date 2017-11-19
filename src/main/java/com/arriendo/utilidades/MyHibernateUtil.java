@@ -20,12 +20,7 @@ public class MyHibernateUtil {
     static {
         try {
             Configuration configuration = new Configuration();
-           /* configuration.addResource("com/arriendo/modelos/EstadoBicicleta.hbm.xml");
-            configuration.addResource("com/arriendo/modelos/Marca.hbm.xml");
-            configuration.addResource("com/arriendo/modelos/TipoBicicleta.hbm.xml");
-            configuration.addResource("com/arriendo/modelos/Bicicleta.hbm.xml");*/
-
-            configuration.configure("hibernate.cfg.xml");
+              configuration.configure("hibernate.cfg.xml");
             StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().
             applySettings(configuration.getProperties());
             sessionFactory = configuration.buildSessionFactory(builder.build());
