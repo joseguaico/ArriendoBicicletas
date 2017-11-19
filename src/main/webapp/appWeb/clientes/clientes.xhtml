@@ -87,7 +87,10 @@
                                     >
                             <p:column style="text-align: center; width: 6em; padding: 2px;" class="mi-state-highlight">
 
-                               
+                                <p:commandButton id="imgAddArriendo" process="dtPrincipal" icon="fa fa-bicycle" iconPos="left" immediate="true">
+                                    <p:tooltip for="imgAddArriendo" value="Crear arriendo nuevo para este cliente" trackMouse="true" />
+                                    <p:ajax  listener="#{clientesBean.onImgAgregarArriendo_click(c)}" event="click" />                               
+                                </p:commandButton>
 
                             </p:column>
 

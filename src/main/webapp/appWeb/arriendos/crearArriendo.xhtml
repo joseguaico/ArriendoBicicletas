@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html [
+    <!ENTITY nbsp "&#160;"> 
+]>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"      >
+    <body>
+
+        <ui:composition template="./../../templates/mainTemplate.xhtml">
+
+            <ui:define name="tituloPagina">
+                Crear arriendo
+            </ui:define>
+
+             <ui:define name="menuLateralSelect">
+               
+                <div id="menuDiv" class="main-menu">
+                    <ul id="side-main-menu" class="side-menu list-unstyled"> 
+                        <li class=""><a href="#{facesContext.externalContext.requestContextPath}/appWeb/index.xhtml"> <i class="icon-home"></i><span>Inicio</span></a></li>
+                        <li class=""> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/reservas/reservas.xhtml"><i class="fa fa-wpforms"></i><span>Reservas</span></a></li>
+                        <li class="active"> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/arriendos.xhtml"><i class="fa fa-list-alt "></i><span>Arriendos</span></a></li>
+                        <li class=""> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/clientes/clientes.xhtml"> <i class="fa fa-group"> </i><span>Clientes</span></a></li>
+                        <li class=""> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/bicicletas/bicicletas.xhtml"> <i class="fa fa-bicycle"></i><span>Bicicletas</span></a></li>
+                    </ul>
+                </div>                
+                
+                <p:inputNumber rendered="false" />
+                
+            </ui:define>
+
+            <ui:define name="contenidoPrincipal">
+                
+                <!-- Titulo -->
+                <div class="breadcrumb-holder">   
+                    <div class="container-fluid">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/index.xhtml"><b>Inicio</b></a></li>
+                            <li class="breadcrumb-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/arriendos.xhtml"><b>Arriendos</b></a></li>
+                            <li class="breadcrumb-item active"><b>Crear arriendo</b></li>
+                        </ul>
+                    </div>
+                </div>      
+                
+                <p:tabView orientation="top" scrollable="true">
+                    
+                    <p:tab title="Información del cliente">
+                        
+                        <p:panelGrid id="panelDatosCliente"  style="text-align:center;"  styleClass="divCenter panelGridCenter sin-bordes">
+
+                            <br/>
+                            <p:commandButton id="btnAbrirPopupBuscarCliente" icon="fa fa-group" value="Buscar" ajax="true">
+                                <p:tooltip value="Click aquí para abrir popup de búsqueda de clientes" for="btnAbrirPopupBuscarCliente" />
+                            </p:commandButton>
+                        
+                        <br/>
+                        <br/>     
+                            
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="compRut" class="mi-label" value="Rut " />
+                                </p:column>
+                                <p:column>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                              <p:inputNumber id="txtRut" emptyValue="empty" thousandSeparator="" decimalPlaces="0" 
+                                                             validatorMessage="*" maxlength="8" maxValue="99999999"  value="#{crearArriendoBean.clienteSel.rutCliente}" />
+                                            </td>
+                                            <td>
+                                                <h:outputLabel for="txtDv" class="mi-label" value="-" />
+                                            </td>
+                                            <td>
+                                                <p:inputText id="txtDv" value="#{crearArriendoBean.clienteSel.dv}" maxlength="1" style=" width: 25px;"
+                                                    onkeydown="return dvAllowed(event);" onkeypress="return dvAllowed(event);"  />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </p:column>
+                            </p:row>                           
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="txtNombres" class="mi-label" value="Nombres: " />                                  
+                                </p:column>
+                                <p:column style=" float: left;">
+                                    <p:inputText id="txtNombres" value="#{crearArriendoBean.clienteSel.nombres}" />                                  
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="txtApellidos" class="mi-label" value="Apellidos: " />                                   
+                                </p:column>
+                                <p:column style=" float: left;">
+                                    <p:inputText id="txtApellidos" value="#{crearArriendoBean.clienteSel.apellidos}" />                                    
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="calFechaNac" class="mi-label" value="Fecha Nac.: " />                                         
+                                </p:column>
+                                <p:column style=" float: left;">
+                                    <p:calendar id="calFechaNac" value="#{crearArriendoBean.clienteSel.fechaNacimiento}" showOn="button" 
+                                                pattern="dd-MM-yyyy" mask="true" navigator="true" locale="es" converterMessage="">
+                                        <f:convertDateTime pattern="dd-MM-yyyy"  />
+                                    </p:calendar>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="txtFono" class="mi-label" value="Teléfonos: " />                                         
+                                </p:column>
+                                <p:column style=" float: left;">
+                                    <p:inputText id="txtFono" value="#{crearArriendoBean.clienteSel.telefono}" />                                    
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="txtEmail" class="mi-label" value="Email: " />                                         
+                                </p:column>
+                                <p:column style=" float: left;">
+                                    <p:inputText id="txtEmail" value="#{crearArriendoBean.clienteSel.email}" />                                    
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="txtDireccion" class="mi-label" value="Dirección:: " />                                         
+                                </p:column>
+                                <p:column style=" float: left;">
+                                    <p:inputText id="txtDireccion" value="#{crearArriendoBean.clienteSel.direccion}" />                                    
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="txtNacionalidad" class="mi-label" value="Nacionalidad: " />                                         
+                                </p:column>
+                                <p:column style=" float: left;">
+                                    <p:inputText id="txtNacionalidad" value="#{crearArriendoBean.clienteSel.nacionalidad}" />                                    
+                                </p:column>
+                            </p:row>
+
+                        </p:panelGrid>
+                
+                    </p:tab>
+                    
+                    <p:tab title="Información de retiro y devolución">
+                        
+                    </p:tab>
+                    
+                    <p:tab title="Bicicletas">
+                        
+                    </p:tab>
+                    
+                    <p:tab title="Accesorios">
+                        
+                    </p:tab>
+                    
+                </p:tabView>
+                    
+                    
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

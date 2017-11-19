@@ -13,6 +13,7 @@ com\arriendo\modelos\Cliente.class
 com\arriendo\controladores\ReservasBean.class
 com\arriendos\gestores\GestionMarcas.class
 com\arriendo\controladores\MainTemplateBean.class
+com\arriendo\controladores\CrearArriendoBean.class
 com\arriendo\modelos\TipoBicicleta.class
 com\arriendo\utilidades\Utilidades.class
 com\arriendo\utilidades\ValoresAuxiliares.class

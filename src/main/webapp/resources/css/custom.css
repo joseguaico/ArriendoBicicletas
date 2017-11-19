@@ -34,3 +34,23 @@
     margin: 0px !important;
 }
 
+.ui-panelgrid>*>tr,
+.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+}
+
+myFieldset .ui-fieldset, .ui-fieldset .ui-fieldset-legend {
+    padding: 5px;
+    width: auto;
+    font-size: 1.0rem;
+}
+
+.ui-button-icon-only {
+    width: 2.8em;
+}
+.ui-icon {
+     width: 1.4em;
+}
+.ui-widget, .ui-widget .ui-widget .mi-label {
+    font-size: 95%;
+}

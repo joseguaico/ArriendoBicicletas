@@ -42,7 +42,31 @@
                             <li class="breadcrumb-item active"><b>Arriendos</b></li>
                         </ul>
                     </div>
-                </div>
+                </div>    
+                
+                <div class="panelGridCenter">
+                    
+                    <br/>
+                    <h:form>
+                    
+                        <p:fieldset legend="Crear arriendo" style=" ">
+                        
+                        <p:commandButton value="Crear un arriendo sin reserva previa" ajax="true" actionListener="#{arriendosBean.onBtnCrearNuevoSin_Click()}" />
+                  
+                        &nbsp;
+                        <p:commandButton value="Crear un arriendo a partir de una reserva" />
+                        
+                    </p:fieldset>
+                        
+                    </h:form>
+                    
+                    
+                    
+                    
+                </div>  
+                
+                
+                
                 
              
             </ui:define>

@@ -8,6 +8,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 @SessionScoped
@@ -60,6 +62,16 @@ public class ClientesBean implements Serializable
         this.clienteSel = clienteSel;
     }
     
+    
+    public void onImgAgregarArriendo_click(Cliente cliente)
+    {
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        externalContext.getSessionMap().put("_PARAM_CLIENTE_SEL", cliente);
+        
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        
+        facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "/appWeb/arriendos/crearArriendo.xhtml?faces-redirect=true");
+    }
     
     
     @PostConstruct
