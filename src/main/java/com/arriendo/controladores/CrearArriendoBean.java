@@ -1,9 +1,10 @@
 package com.arriendo.controladores;
 
+import com.arriendo.modelos.Bicicleta;
 import com.arriendo.modelos.Cliente;
 import com.arriendo.modelos.Sucursal;
-import com.arriendo.utilidades.ValoresAuxiliares;
-import com.arriendos.gestores.GestionClientes;
+import com.arriendo.utilidades.Utilidades;
+import com.arriendos.gestores.GestionBicicletas;
 import com.arriendos.gestores.GestionSucursales;
 import java.io.Serializable;
 import java.time.LocalTime;
@@ -18,7 +19,7 @@ import org.primefaces.context.RequestContext;
 
 @SessionScoped
 @ManagedBean(name="crearArriendoBean")
-public class CrearArriendoBean 
+public class CrearArriendoBean implements Serializable
 {
     private Cliente clienteSel;
     
@@ -32,8 +33,6 @@ public class CrearArriendoBean
     private Date fechaNac;
     private String email = "";
     private String nacionalidad = "";
-    //private List<EstadoCliente> estados;
-    //private int estadoSel;
     
     // Para info de retiro y devolución
     private List<Sucursal> sucursalesRetiro;
@@ -43,9 +42,15 @@ public class CrearArriendoBean
     private List<Sucursal> sucursalesDevolucion;
     private int sucursalDevolucionSelect; 
     private LocalTime horaDevolucion;
-       private Date fechaDevolucion;
+    private Date fechaDevolucion;
     
-
+    // Para bicicletas
+    private List<Bicicleta> bicicletasAdded;
+    private long totalBicicletas = 0;
+    private int cantBicicletas = 0;
+    private String totalBicicletasFormato = "";
+    
+    
     public String getRut() {
         return this.rut;
     }
@@ -154,9 +159,34 @@ public class CrearArriendoBean
     public void setHoraDevolucion(LocalTime horaDevolucion) {
         this.horaDevolucion = horaDevolucion;
     }
+    public List<Bicicleta> getBicicletasAdded() {
+        return this.bicicletasAdded;
+    }
+    public void setBicicletasAdded(List<Bicicleta> bicicletasAdded) {
+        this.bicicletasAdded = bicicletasAdded;
+    }
+    public long getTotalBicicletas() {
+        return this.totalBicicletas;
+    }
+    public void setTotalBicicletas(long totalBicicletas) {
+        this.totalBicicletas = totalBicicletas;
+        this.totalBicicletasFormato = Utilidades.formatearNumero(totalBicicletas);
+    }
+    public int getCantBicicletas() {
+        return this.cantBicicletas;
+    }
+    public void setCantBicicletas(int cantBicicletas) {
+        this.cantBicicletas = cantBicicletas;
+    }
+    public String getTotalBicicletasFormato() {
+        return this.totalBicicletasFormato;
+    }
+    public void setTotalBicicletasFormato(String totalBicicletasFormato) {
+        this.totalBicicletasFormato = totalBicicletasFormato;
+    }
     
     
-
+    
     @PostConstruct
     private void onInit()
     {
@@ -164,6 +194,8 @@ public class CrearArriendoBean
         this.clienteSel = (Cliente)context.getSessionMap().get("_PARAM_CLIENTE_SEL");
         
         cargarSucursales();
+        cargarBicicletas();
+        cargarTotalesBicicletas();
     }
     
     private void cargarSucursales()
@@ -171,6 +203,34 @@ public class CrearArriendoBean
         GestionSucursales sucursalesGestion = new GestionSucursales();
         this.sucursalesRetiro = sucursalesGestion.obtenerSucursales();
         this.sucursalesDevolucion = sucursalesGestion.obtenerSucursales();
+    }
+    private void cargarBicicletas()
+    {
+        GestionBicicletas bicicletasGestion = new GestionBicicletas();
+        this.bicicletasAdded = bicicletasGestion.obtenerBicicletas(0, "");
+    }
+
+    private void cargarTotalesBicicletas()
+    {
+        if(this.bicicletasAdded != null && this.bicicletasAdded.size() > 0)
+        {
+            this.cantBicicletas = this.bicicletasAdded.size();
+            this.setTotalBicicletas(this.bicicletasAdded.stream().map(b -> b.getPrecio()).mapToInt(Integer::intValue).sum());
+        }
+        else{
+            this.cantBicicletas = 0;
+            this.setTotalBicicletas(0);
+        }
+    }
+    
+    public void onImgRemoveBicicleta_click(Bicicleta bicicleta)
+    {
+        this.bicicletasAdded.remove(bicicleta);
+        cargarTotalesBicicletas();
+        RequestContext.getCurrentInstance().update("formTabContainer:tabContainer:formGrillaBicicletas");
+        //RequestContext.getCurrentInstance().update("formTabContainer:tabContainer:tabBicicletas:formGrillaBicicletas:panelGrillaBicicletasAdded");
+        //RequestContext.getCurrentInstance().update("formTabContainer:tabBicicletas:formGrillaBicicletas:panelGrillaBicicletasAdded");
+        
     }
     
 }

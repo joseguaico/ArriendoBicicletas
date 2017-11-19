@@ -1,15 +1,12 @@
 package com.arriendo.controladores;
 
 import com.arriendo.modelos.Reserva;
-import com.arriendo.utilidades.ValoresAuxiliares;
 import com.arriendos.gestores.GestionReservas;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.view.ViewScoped;
-import org.primefaces.context.RequestContext;
 
 @SessionScoped
 @ManagedBean(name="reservasBean")

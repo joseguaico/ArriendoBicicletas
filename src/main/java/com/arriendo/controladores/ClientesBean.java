@@ -1,7 +1,6 @@
 package com.arriendo.controladores;
 
 import com.arriendo.modelos.Cliente;
-import com.arriendo.utilidades.ValoresAuxiliares;
 import com.arriendos.gestores.GestionClientes;
 import java.io.Serializable;
 import java.util.List;
