@@ -16,7 +16,8 @@
             </ui:define>
 
              <ui:define name="menuLateralSelect">
-               
+            
+                 
                 <div id="menuDiv" class="main-menu">
                     <ul id="side-main-menu" class="side-menu list-unstyled"> 
                         <li class=""><a href="#{facesContext.externalContext.requestContextPath}/appWeb/index.xhtml"> <i class="icon-home"></i><span>Inicio</span></a></li>
@@ -60,7 +61,7 @@
                             
                             <p:row>
                                 <p:column>
-                                    <h:outputLabel for="compRut" class="mi-label" value="Rut " />
+                                    <h:outputLabel for="txtRut" class="mi-label" value="Rut " />
                                 </p:column>
                                 <p:column>
                                     <table>
@@ -145,6 +146,78 @@
                     </p:tab>
                     
                     <p:tab title="Información de retiro y devolución">
+                        
+                        <p:panelGrid id="panelDatosCliente"  style="text-align:center;"  styleClass="divCenter panelGridCenter sin-bordes">
+
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="ddlSucursalRetiro" class="mi-label" value="Sucursal retiro: " />                                  
+                                </p:column>
+                                <p:column style=" float: left; width: 100%;">
+                                    <p:selectOneMenu id="ddlSucursalRetiro" value="#{crearArriendoBean.sucursalRetiroSelect}" style=" width: 100% !important;">
+                                        <f:selectItems value="#{crearArriendoBean.sucursalesRetiro}" var="sr"
+                                                       itemLabel="#{sr.descripcionSucursal}" itemValue="#{sr.idSucursal}"/>
+                                    </p:selectOneMenu>                          
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="calFechaRetiro" class="mi-label" value="Fecha retiro: " />                                         
+                                </p:column>
+                                <p:column style=" float: left; width: 100%;">
+                                    <p:calendar id="calFechaRetiro" value="#{crearArriendoBean.fechaRetiro}" showOn="button" 
+                                                pattern="dd-MM-yyyy" mask="true" navigator="true" locale="es" converterMessage="">
+                                        <f:convertDateTime pattern="dd-MM-yyyy"  />
+                                    </p:calendar>
+                                </p:column>
+                            </p:row>     
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="timeHoraRetiro" class="mi-label" value="Hora retiro *" />
+                                </p:column>
+                                <p:column style=" float: left;">
+                                    <p:calendar id="timeHoraRetiro" value="#{crearArriendoBean.horaRetiro}" locale="es" 
+                                                timeZone="UTC-3"  pattern="HH:mm" timeOnly="true" minHour="08" maxHour="21">
+                                        <f:converter converterId="localTimeCalConverter" />
+                                    </p:calendar>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="ddlSucursalDevolucion" class="mi-label" value="Sucursal devolución: " />                                  
+                                </p:column>
+                                <p:column style=" float: left; width: 100%;">
+                                    <p:selectOneMenu id="ddlSucursalDevolucion" value="#{crearArriendoBean.sucursalDevolucionSelect}" style=" width: 100% !important;">
+                                        <f:selectItems value="#{crearArriendoBean.sucursalesDevolucion}" var="sr"
+                                                       itemLabel="#{sr.descripcionSucursal}" itemValue="#{sr.idSucursal}"/>
+                                    </p:selectOneMenu>                          
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="calFechaDevolucion" class="mi-label" value="Fecha devolución: " />                                         
+                                </p:column>
+                                <p:column style=" float: left; width: 100%;">
+                                    <p:calendar id="calFechaDevolucion" value="#{crearArriendoBean.fechaDevolucion}" showOn="button" 
+                                                pattern="dd-MM-yyyy" mask="true" navigator="true" locale="es" converterMessage="">
+                                        <f:convertDateTime pattern="dd-MM-yyyy"  />
+                                    </p:calendar>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column>
+                                    <h:outputLabel for="timeHoraDevolucion" class="mi-label" value="Hora devolución *" />
+                                </p:column>
+                                <p:column style=" float: left;">
+                                    <p:calendar id="timeHoraDevolucion" value="#{crearArriendoBean.horaDevolucion}" locale="es" 
+                                                timeZone="UTC-3"  pattern="HH:mm" timeOnly="true" minHour="08" maxHour="21">
+                                        <f:converter converterId="localTimeCalConverter" />
+                                    </p:calendar>
+                                </p:column>
+                            </p:row>
+                            
+                        </p:panelGrid>
+                        
                         
                     </p:tab>
                     

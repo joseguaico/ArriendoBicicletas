@@ -13,6 +13,7 @@ com\arriendo\modelos\Cliente.class
 com\arriendo\controladores\ReservasBean.class
 com\arriendos\gestores\GestionMarcas.class
 com\arriendo\controladores\MainTemplateBean.class
+com\arriendo\converters\LocalTimeCalConverter.class
 com\arriendo\controladores\CrearArriendoBean.class
 com\arriendo\modelos\TipoBicicleta.class
 com\arriendo\utilidades\Utilidades.class
@@ -21,5 +22,6 @@ com\arriendos\gestores\GestionBicicletas.class
 com\arriendo\controladores\BicicletasBean.class
 com\arriendo\modelos\Accesorio.class
 com\arriendo\utilidades\MyHibernateUtil.class
+com\arriendos\gestores\GestionSucursales.class
 com\arriendo\modelos\EstadoBicicleta.class
 com\arriendo\modelos\Sucursal.class

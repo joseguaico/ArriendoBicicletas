@@ -19,5 +19,8 @@
     <mapping resource="com/arriendo/modelos/Marca.hbm.xml"/>
     <mapping resource="com/arriendo/modelos/Sucursal.hbm.xml"/>
     <mapping resource="com/arriendo/modelos/Accesorio.hbm.xml"/>
+    
+    
+    
   </session-factory>
 </hibernate-configuration>

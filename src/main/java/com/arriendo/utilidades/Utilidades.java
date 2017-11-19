@@ -118,5 +118,17 @@ public class Utilidades
         
         return pattern.matcher(email).matches();
     }
+    
+    public static Date stringToTime(String fecha) 
+    {
+        try
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+            return sdf.parse(fecha);
+        }
+        catch(Exception ex){}
+        
+        return null;
+    }
 
 }
