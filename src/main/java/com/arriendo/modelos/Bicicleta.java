@@ -14,6 +14,7 @@ public class Bicicleta  implements java.io.Serializable {
      private Integer precio;
      private Date fechaRegistro;
      private Byte estadoSincr;
+     private boolean selectedAux;
 
     public Bicicleta() {
     }
@@ -98,6 +99,14 @@ public class Bicicleta  implements java.io.Serializable {
         return Utilidades.formatearNumero((long)this.precio);
     }
 
+    public boolean isSelectedAux() {
+        return selectedAux;
+    }
+
+    public void setSelectedAux(boolean selectedAux) {
+        this.selectedAux = selectedAux;
+    }
+    
 
 
 }

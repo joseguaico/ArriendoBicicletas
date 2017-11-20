@@ -20,7 +20,7 @@ import org.primefaces.component.messages.Messages;
 
 @SessionScoped
 @ManagedBean(name="datosRetiroDevolucionBean")
-public class DatosRetiroDevolucionBean 
+public class DatosRetiroDevolucionBean implements Serializable
 {
      // Para info de retiro y devolución
     private List<Sucursal> sucursalesRetiro;

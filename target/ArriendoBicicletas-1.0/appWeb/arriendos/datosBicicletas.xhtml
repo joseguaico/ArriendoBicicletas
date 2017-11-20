@@ -30,6 +30,10 @@
             </ui:define>
             
             <ui:define name="contenidoPrincipal">
+           
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{datosBicicletasBean.onLoad}"/>
+                </f:metadata>
                 
                 <!-- TITULO -->
                 <div class="breadcrumb-holder">   
@@ -54,25 +58,28 @@
                     
                     <h:form id="formGrillaBicicletas" style="width: 100%;" styleClass="divCenter panelGridCenter">
                       
+                         <p:messages id="msgBicicletas" escape="false"  />
+                        
+                        
                             <!-- INFO RESUMEN BICICLETAS -->
                             <p:panelGrid id="panelResumenBicicletasAdded" layout="tabular" columns="5">
                                 
                                 <h:outputLabel for="txtCantidadBicicletasAdded" value="Bicicletas seleccionadas: " />
-                                <p:inputText id="txtCantidadBicicletasAdded" class="mi-disabledInput mi-noShadow" readonly="true" value=" #{crearArriendoBean1.cantBicicletas}" />
+                                <p:inputText id="txtCantidadBicicletasAdded" class="mi-disabledInput-yellow mi-noShadow" readonly="true" value=" #{datosBicicletasBean.cantBicicletas}" />
                                 
                                 <h:outputLabel for="txtValorTotalBicicletas" value="Valor total: " />
-                                <p:inputText id="txtValorTotalBicicletas" class="mi-disabledInput mi-noShadow"  readonly="true" value=" $ #{crearArriendoBean1.totalBicicletasFormato}" />
+                                <p:inputText id="txtValorTotalBicicletas" class="mi-disabledInput-yellow mi-noShadow"  readonly="true" value=" $ #{datosBicicletasBean.totalBicicletasFormato}" />
                                 
-                                <p:commandButton id="btnAbrirPopupBuscarBicicletas" icon="fa fa-bicycle" value="&nbsp;&nbsp;Buscar bicicletas" ajax="true">
+                                <p:commandButton id="btnAbrirPopupBuscarBicicletas" icon="fa fa-bicycle" value="&nbsp;&nbsp;Buscar bicicletas" ajax="true"
+                                                 actionListener="#{datosBicicletasBean.onBtnAbrirPopupBusqueda()}"      >
                                     <p:tooltip value="Click aquí para abrir popup de búsqueda de bicicletas" for="btnAbrirPopupBuscarBicicletas" />
                                 </p:commandButton>
                                 
                             </p:panelGrid>
-                                                       
                             
                             <!--  GRILLA BICICLETAS ADDED-->
                             <p:panel id="panelGrillaBicicletasAdded" visible="true" >
-                                <p:dataTable id="dtBicicletasAdded" widgetVar="dtBicicletasAdded" var="b" value="#{crearArriendoBean1.bicicletasAdded}" 
+                                <p:dataTable id="dtBicicletasAdded" widgetVar="dtBicicletasAdded" var="b" value="#{datosBicicletasBean.bicicletasAdded}" 
                                         selectionMode="single" 
                                         rowSelectMode="add"
                                         rowKey="#{b.idBicicleta}" emptyMessage="No hay bicicletas seleccionadas"
@@ -85,7 +92,7 @@
                                         
                                         <p:commandButton id="imgRemoveBicicleta" process="dtBicicletasAdded" icon="fa fa-close" iconPos="left" immediate="true">
                                             <p:tooltip for="imgRemoveBicicleta" value="Remover esta bicicleta" trackMouse="true" />
-                                            <p:ajax  listener="#{crearArriendoBean1.onImgRemoveBicicleta_click(b)}" event="click" />                               
+                                            <p:ajax  listener="#{datosBicicletasBean.onImgRemoveBicicleta_click(b)}" event="click" />                               
                                         </p:commandButton>
                                         
                                     </p:column>
@@ -112,9 +119,94 @@
                                 </p:dataTable>
                             </p:panel>
                             
+                            
+                             <br />
+                            <br />
+                            <p:commandButton value="Continuar a accesorios" ajax="true" update="formGrillaBicicletas"
+                                     actionListener="#{datosBicicletasBean.onBtnSiguiente_Click()}" />
+                            
                         </h:form>
                     
-                    
+                    <h:form id="formBusquedaBicicletas">
+                        
+                        <p:dialog id="dlgBusquedaBicicletas" widgetVar="dlgBusquedaBicicletas" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+                                  position="center" closeOnEscape="true" class="divCenter panelGridCenter align-centro-centro">
+
+                            <f:facet name="header">
+                                <h:outputText id="dialogTitle" value="Seleccionar bicicletas"/>
+                            </f:facet>
+                        
+                            <p:panelGrid id="panelGrillaBicicletasBusqueda" styleClass="divCenter panelGridCenter" columnClasses="sin-bordes" 
+                                         style="height: auto;"      layout="grid" columns="6"  >
+
+                                <p:outputLabel for="ddlMarcaBusq" value="Marca " />
+                                <p:selectOneMenu id="ddlMarcaBusq" value="#{datosBicicletasBean.marcaBusqSelected}" style=" width: 100% !important;">
+                                    <f:selectItems value="#{datosBicicletasBean.marcasBusq}" var="m"
+                                               itemLabel="#{m.descripcion}" itemValue="#{m.idMarca}"/>
+                                </p:selectOneMenu> 
+
+
+                                <p:outputLabel for="txtModeloBusq" value="Descripción: " />
+                                <p:inputText id="txtModeloBusq" value="#{bicicletasBean.modeloBusq}" style=" width: 100% !important;" />
+
+                                <p:commandButton id="btnBuscar" value="Buscar" style=" width: auto !important; display: flex;" validateClient="false"
+                                                 actionListener="#{datosBicicletasBean.onBtnBuscar_Click}" update="formBusquedaBicicletas" ajax="true"  >
+                                </p:commandButton>
+
+                            </p:panelGrid>
+                        
+                                <!--  GRILLA -->
+                                <p:panel id="panelGrilla" visible="true" >
+                                    <p:dataTable id="dtPrincipal" widgetVar="dtPrincipal" var="b" value="#{datosBicicletasBean.bicicletas}" 
+                                            selectionMode="single" 
+                                            rowSelectMode="add"
+                                            rowKey="#{b.idBicicleta}" emptyMessage="No se encontraron registros"
+                                            paginator="false"
+                                            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                            rowsPerPageTemplate="5,10,15"
+                                            rows="10"
+                                            scrollable="true" scrollHeight="110"
+                                            >
+                                        
+                                        
+                                        <p:column style="text-align: center; width: 6em; padding: 2px;" class="mi-state-highlight">
+                                        
+                                            <p:selectBooleanCheckbox value="#{b.selectedAux}" />
+
+                                        </p:column>
+
+                                        <p:column headerText="ID Bicicleta" class="mi-state-highlight" >
+                                            <h:outputText value="#{b.idBicicleta}" />
+                                        </p:column>
+
+                                        <p:column headerText="Marca" class="mi-state-highlight" >
+                                            <h:outputText value="#{b.marca.descripcion}" />
+                                        </p:column>
+
+                                        <p:column headerText="Tipo" class="mi-state-highlight" >
+                                            <h:outputText value="#{b.tipoBicicleta.descripcion}" />
+                                        </p:column>
+
+                                        <p:column headerText="Modelo" class="mi-state-highlight" >
+                                            <h:outputText value="#{b.modelo}" />
+                                        </p:column>
+
+                                        <p:column headerText="Precio" class="mi-state-highlight" >
+                                            <h:outputText value="$ #{b.obtenerPrecioConFormato()}" />
+                                        </p:column>
+                                    </p:dataTable>
+                                    
+                                    <p:commandButton  id="btnAceptarBusqueda" value="Aceptar" ajax="true" actionListener="#{datosBicicletasBean.onBtnAceptar_Click()}" 
+                                                      update="panelGrilla"            />
+                                </p:panel>
+                            
+                            
+                        </p:dialog>
+                        
+                        
+                        
+                        
+                    </h:form>
                     
                 </p:panel>
                     
