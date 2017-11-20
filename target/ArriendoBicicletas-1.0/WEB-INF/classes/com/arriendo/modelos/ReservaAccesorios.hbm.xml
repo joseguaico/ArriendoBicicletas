@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20-11-2017 14:03:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.arriendo.modelos.ReservaAccesorios" table="reserva_accesorios" catalog="bd_bicicletas" optimistic-lock="version">
+        <composite-id name="id" class="com.arriendo.modelos.ReservaAccesoriosId">
+            <key-property name="idReserva" type="int">
+                <column name="ID_Reserva" />
+            </key-property>
+            <key-property name="idAccesorios" type="int">
+                <column name="ID_Accesorios" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="accesorio" class="com.arriendo.modelos.Accesorio" update="false" insert="false" fetch="select">
+            <column name="ID_Accesorios" not-null="true" />
+        </many-to-one>
+        <many-to-one name="reserva" class="com.arriendo.modelos.Reserva" update="false" insert="false" fetch="select">
+            <column name="ID_Reserva" not-null="true" />
+        </many-to-one>
+        <property name="cantidad" type="int">
+            <column name="Cantidad" not-null="true" />
+        </property>
+        <property name="monto" type="int">
+            <column name="Monto" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

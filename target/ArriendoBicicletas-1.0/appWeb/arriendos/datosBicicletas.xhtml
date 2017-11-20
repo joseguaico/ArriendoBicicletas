@@ -52,7 +52,7 @@
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosRetiroDevolucion.xhtml"><b>Retiro y devolución</b></a></li>
                         <li class="mi-naviagation-item active"><b>Bicicletas</b></li>
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosAccesorios.xhtml"><b>Accesorios</b></a></li>
-                        <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosGarantias.xhtml"><b>Garantías</b></a></li>
+                        <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosSeguros.xhtml"><b>Seguros</b></a></li>
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/resumenFinalizar.xhtml"><b>Finalizar</b></a></li>
                     </ul>
                     
@@ -122,6 +122,9 @@
                             
                              <br />
                             <br />
+                            <p:commandButton value="Volver a retiro y devolución" ajax="true" update="formGrillaBicicletas"
+                                             actionListener="#{datosBicicletasBean.onBtnPrevio_Click()}" />
+                            &nbsp;
                             <p:commandButton value="Continuar a accesorios" ajax="true" update="formGrillaBicicletas"
                                      actionListener="#{datosBicicletasBean.onBtnSiguiente_Click()}" />
                             
@@ -146,7 +149,7 @@
                                 </p:selectOneMenu> 
 
 
-                                <p:outputLabel for="txtModeloBusq" value="Descripción: " />
+                                <p:outputLabel for="txtModeloBusq" value="Modelo: " />
                                 <p:inputText id="txtModeloBusq" value="#{bicicletasBean.modeloBusq}" style=" width: 100% !important;" />
 
                                 <p:commandButton id="btnBuscar" value="Buscar" style=" width: auto !important; display: flex;" validateClient="false"

@@ -48,11 +48,29 @@
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosRetiroDevolucion.xhtml"><b>Retiro y devolución</b></a></li>
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosBicicletas.xhtml"><b>Bicicletas</b></a></li>
                         <li class="mi-naviagation-item active"><b>Accesorios</b></li>
-                        <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosGarantias.xhtml"><b>Garantías</b></a></li>
+                        <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosSeguros.xhtml"><b>Seguros</b></a></li>
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/resumenFinalizar.xhtml"><b>Finalizar</b></a></li>
                     </ul>
                     
                 </p:panel>
+                
+                <h:form id="formAccesorios">
+                    
+                    <p:panel>
+                        
+                        <br />
+                            <br />
+                            <p:commandButton value="Volver a bicicletas" ajax="true" update="formAccesorios"
+                                             actionListener="#{datosAccesoriosBean.onBtnPrevio_Click()}" />
+                            &nbsp;
+                            <p:commandButton value="Continuar a seguros" ajax="true" update="formAccesorios"
+                                     actionListener="#{datosAccesoriosBean.onBtnSiguiente_Click()}" />
+                        
+                    </p:panel>
+                          
+                    
+                </h:form>
+                
             </ui:define>
 
         </ui:composition>

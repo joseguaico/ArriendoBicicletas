@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20-11-2017 14:03:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.arriendo.modelos.DetalleReserva" table="detalle_reserva" catalog="bd_bicicletas" optimistic-lock="version">
+        <id name="idDetalle" type="int">
+            <column name="ID_Detalle" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="reserva" class="com.arriendo.modelos.Reserva" fetch="select">
+            <column name="ID_Reserva" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sucursal" class="com.arriendo.modelos.Sucursal" fetch="select">
+            <column name="ID_Sucursal" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tipoDetalleReserva" class="com.arriendo.modelos.TipoDetalleReserva" fetch="select">
+            <column name="ID_Tipo_Detalle" not-null="true" />
+        </many-to-one>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="Fecha_Registro" length="19" not-null="true" />
+        </property>
+        <property name="observacion" type="string">
+            <column name="Observacion" length="450" />
+        </property>
+        <property name="estadoSincr" type="java.lang.Byte">
+            <column name="estado_sincr" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -31,7 +31,7 @@ import org.primefaces.context.RequestContext;
 
 @SessionScoped
 @ManagedBean(name="datosBicicletasBean")
-public class DatosBicicletasBean 
+public class DatosBicicletasBean implements Serializable
 {
       // Para bicicletas
     private List<Bicicleta> bicicletasAdded;
@@ -123,6 +123,22 @@ public class DatosBicicletasBean
             facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "/appWeb/arriendos/datosAccesorios.xhtml?faces-redirect=true");
         }
     }
+     public void onBtnPrevio_Click()
+    {
+        if(this.bicicletasAdded == null || this.bicicletasAdded.size() <=0)
+        {
+            String errorMsg = "Debe seleccionar al menos 1 bicicleta para realizar el arrindo";
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMsg, errorMsg);
+            FacesContext.getCurrentInstance().addMessage("formGrillaBicicletas:msgBicicletas", msg);
+        }else{
+        
+            ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+            externalContext.getSessionMap().put("_PARAM_BICICLETAS_Bicicletas_SEL", this.bicicletasAdded);   
+            
+            FacesContext facesContext = FacesContext.getCurrentInstance();        
+            facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "/appWeb/arriendos/datosRetiroDevolucion.xhtml?faces-redirect=true");
+        }
+    }
     
     // Para popup de búsquedas
     private List<Marca> marcasBusq;
@@ -180,7 +196,7 @@ public class DatosBicicletasBean
         }
         
         GestionBicicletas bicicletasGestion = new GestionBicicletas();
-        this.bicicletas = bicicletasGestion.obtenerBicicletasNot(notFilters);
+        this.bicicletas = bicicletasGestion.obtenerBicicletasNot(this.marcaBusqSelected, this.modeloBusq,  notFilters);
     }
     
     public void onBtnBuscar_Click()

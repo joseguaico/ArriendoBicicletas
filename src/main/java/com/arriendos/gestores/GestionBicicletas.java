@@ -64,7 +64,7 @@ public class GestionBicicletas
         return bicicletas;
     }
     
-    public List<Bicicleta> obtenerBicicletasNot(String listaNot)
+    public List<Bicicleta> obtenerBicicletasNot(int marca, String modelo, String listaNot)
     {
         Session session = null;
         List<Bicicleta> bicicletas = null;
@@ -75,11 +75,17 @@ public class GestionBicicletas
             Query query = session.createQuery("FROM " + Bicicleta.class.getName() + " b "
                         + " JOIN b.marca m " 
                         + " JOIN b.tipoBicicleta t " 
-                        + " WHERE str(b.idBicicleta) NOT IN (:NOT_LIST) "
-                           + " ORDER BY m.descripcion ASC "
+                        + " JOIN b.estadoBicicleta e"
+                     + " WHERE m.idMarca = Case When :ID_MARCA = 0 then m.idMarca Else :ID_MARCA End "
+                     + " AND b.modelo LIKE :MODELO "
+                     + " AND str(b.idBicicleta) NOT IN (:NOT_LIST) "
+                        
+                        + " ORDER BY m.descripcion ASC "
             );
             
             query.setParameter("NOT_LIST", listaNot);
+            query.setParameter("ID_MARCA", marca);
+            query.setParameter("MODELO", "%"+ modelo + "%");
             
             List<Object[]> tuples  = (List<Object[]>)query.list();
                         

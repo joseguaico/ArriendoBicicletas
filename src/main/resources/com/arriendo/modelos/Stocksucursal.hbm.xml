@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20-11-2017 14:03:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.arriendo.modelos.Stocksucursal" table="stocksucursal" catalog="bd_bicicletas" optimistic-lock="version">
+        <id name="idStock" type="int">
+            <column name="ID_Stock" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="sucursal" class="com.arriendo.modelos.Sucursal" fetch="select">
+            <column name="ID_Sucursal" not-null="true" />
+        </many-to-one>
+        <property name="codigoBicicleta" type="int">
+            <column name="CodigoBicicleta" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

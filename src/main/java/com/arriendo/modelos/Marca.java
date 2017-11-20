@@ -1,5 +1,5 @@
 package com.arriendo.modelos;
-// Generated 18-11-2017 19:47:29 by Hibernate Tools 4.3.1
+// Generated 20-11-2017 14:02:58 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,6 +16,7 @@ public class Marca  implements java.io.Serializable {
      private String descripcion;
      private Date fechaRegistro;
      private Byte estadoSincr;
+     private Set bicicletas = new HashSet(0);
 
     public Marca() {
     }
@@ -30,6 +31,7 @@ public class Marca  implements java.io.Serializable {
        this.descripcion = descripcion;
        this.fechaRegistro = fechaRegistro;
        this.estadoSincr = estadoSincr;
+       this.bicicletas = bicicletas;
     }
    
     public int getIdMarca() {
@@ -60,6 +62,14 @@ public class Marca  implements java.io.Serializable {
     public void setEstadoSincr(Byte estadoSincr) {
         this.estadoSincr = estadoSincr;
     }
+    public Set getBicicletas() {
+        return this.bicicletas;
+    }
+    
+    public void setBicicletas(Set bicicletas) {
+        this.bicicletas = bicicletas;
+    }
+
 
 
 

@@ -2,18 +2,30 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 
 <hibernate-reverse-engineering>
-    
   <schema-selection match-catalog="bd_bicicletas"/>
-  <table-filter match-name="estado_bicicleta"/>
-  <table-filter match-name="arriendo"/>
-  <table-filter match-name="accesorio"/>
-  <table-filter match-name="tipo_bicicleta"/>
-  <table-filter match-name="cliente"/>
-  <table-filter match-name="sucursal"/>
-  <table-filter match-name="marca"/>
-  <table-filter match-name="usuario"/>
-  <table-filter match-name="reserva"/>
-  <table-filter match-name="bicicleta"/>
+  <table-filter match-name="daño"/>
   <table-filter match-name="rol"/>
-  
+  <table-filter match-name="garantia"/>
+  <table-filter match-name="seguros_arriendo"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="multas"/>
+  <table-filter match-name="reserva_accesorios"/>
+  <table-filter match-name="garantia_voucher"/>
+  <table-filter match-name="tipo_bicicleta"/>
+  <table-filter match-name="estado_bicicleta"/>
+  <table-filter match-name="mantenciones"/>
+  <table-filter match-name="tipo_garantia"/>
+  <table-filter match-name="bicicleta"/>
+  <table-filter match-name="arriendo"/>
+  <table-filter match-name="voucher"/>
+  <table-filter match-name="marca"/>
+  <table-filter match-name="reserva_bicicleta"/>
+  <table-filter match-name="accesorio"/>
+  <table-filter match-name="detalle_reserva"/>
+  <table-filter match-name="cliente"/>
+  <table-filter match-name="seguro"/>
+  <table-filter match-name="reserva"/>
+  <table-filter match-name="sucursal"/>
+  <table-filter match-name="tipo_detalle_reserva"/>
+  <table-filter match-name="stocksucursal"/>
 </hibernate-reverse-engineering>

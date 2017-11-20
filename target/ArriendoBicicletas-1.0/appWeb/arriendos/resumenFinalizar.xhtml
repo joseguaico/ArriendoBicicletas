@@ -52,7 +52,7 @@
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosRetiroDevolucion.xhtml"><b>Retiro y devolución</b></a></li>
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosBicicletas.xhtml"><b>Bicicletas</b></a></li>                        
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosAccesorios.xhtml"><b>Accesorios</b></a></li>
-                        <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosGarantias.xhtml"><b>Garantías</b></a></li>
+                        <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosSeguros.xhtml"><b>Seguros</b></a></li>
                         <li class="mi-naviagation-item active"><b>Finalizar</b></li>
                     </ul>
                     
@@ -136,11 +136,20 @@
                         </p:panelGrid>
                         
                         
-                        
+                          <br />
+                            <br />
+                    <p:commandButton value="Volver a retiro y devolución" ajax="true" update="formResumen"
+                                     actionListener="#{resumenFinalizarBean.onBtnPrevio_Click()}" />
+                    &nbsp;
+                    <p:commandButton value="Finalizar arriendo" ajax="true" update="formResumen"
+                             actionListener="#{resumenFinalizarBean.onBtnFinalizar_Click()}" />
+                                                
                     </p:fieldset>
                 
+                        
                     </p:panel>
 
+                    
                         
                 </h:form>
                 

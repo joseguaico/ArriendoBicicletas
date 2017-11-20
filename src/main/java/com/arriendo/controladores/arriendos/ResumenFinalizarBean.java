@@ -2,9 +2,12 @@ package com.arriendo.controladores.arriendos;
 
 import com.arriendo.modelos.Bicicleta;
 import com.arriendo.modelos.Cliente;
+import com.arriendo.modelos.Reserva;
 import com.arriendo.modelos.Sucursal;
+import com.arriendo.modelos.Usuario;
 import com.arriendo.utilidades.Utilidades;
 import com.arriendos.gestores.GestionClientes;
+import com.arriendos.gestores.GestionReservas;
 import com.arriendos.gestores.GestionSucursales;
 import java.io.Serializable;
 import java.time.LocalTime;
@@ -236,14 +239,81 @@ public class ResumenFinalizarBean implements Serializable
         if(this.bicicletasAdded != null && this.bicicletasAdded.size() > 0)
         {
             this.cantBicicletas = this.bicicletasAdded.size();
+            this.textoBicicletasCantiad = Integer.toString(this.cantBicicletas);
             this.setTotalBicicletas(this.bicicletasAdded.stream().map(b -> b.getPrecio()).mapToInt(Integer::intValue).sum());
+            this.textoBicicletasTotal = "$ " + Utilidades.formatearNumero(totalBicicletas);
         }
         else{
             this.cantBicicletas = 0;
+             this.textoBicicletasCantiad = "0"; 
+             this.textoBicicletasTotal = "$ 0";
             this.setTotalBicicletas(0);
         }
         RequestContext.getCurrentInstance().update("formGrillaBicicletas");
     }
     
+     public void onBtnFinalizar_Click()
+    {
+        String errorMsg = "";
+        
+        if(this.clienteSel == null)
+        {
+            errorMsg = "Debe seleccionar un cliente para realizar el arriendo";
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMsg, errorMsg);
+            FacesContext.getCurrentInstance().addMessage("formResumen:msgDatosCliente", msg);
+            return;
+        }
+        if(this.sucursalRetiro == null)
+        {
+            errorMsg = "Debe ingresar los datos de la sucursar de retiro";
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMsg, errorMsg);
+            FacesContext.getCurrentInstance().addMessage("formResumen:msgDatosCliente", msg);
+            return;
+        }
+        if(this.sucursalDevolucion == null)
+        {
+            errorMsg = "Debe ingresar los datos de la sucursar de devolución";
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMsg, errorMsg);
+            FacesContext.getCurrentInstance().addMessage("formResumen:msgDatosCliente", msg);
+            return;
+        }
+        if(this.bicicletasAdded == null || this.bicicletasAdded.size() <=0)
+        {
+            errorMsg = "Debe seleccionar al menos 1 bicicleta para realizar el arriendo";
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMsg, errorMsg);
+            FacesContext.getCurrentInstance().addMessage("formResumen:msgDatosCliente", msg);
+            return;
+        }
+        GestionReservas reservasGestion = new GestionReservas();
+        
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(1);
+        
+        Reserva reserva = new Reserva();
+        reserva.setFechaSolicitud(new Date());
+        reserva.setFechaRetiro(this.fechaRetiro);
+        reserva.setCliente(this.clienteSel);
+        reserva.setUsuario(usuario);
+        reserva.setFechaRetiro(this.fechaRetiro);
+        reserva.setFechaRegistro(new Date());
+        
+        /*
+        if (reservasGestion.insertReserva(reserva, bicicletasAdded) == true)
+        {
+            
+        }
+        else
+        {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El arriendo no fue ingresado.", "El arriendo no fue ingresado.");
+            FacesContext.getCurrentInstance().addMessage("formResumen:msgDatosCliente", msg);
+        }
+        */
+    }
+     public void onBtnPrevio_Click()
+    {
+       
+            FacesContext facesContext = FacesContext.getCurrentInstance();        
+            facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "/appWeb/arriendos/datosSeguros.xhtml?faces-redirect=true");
+    }
     
 }

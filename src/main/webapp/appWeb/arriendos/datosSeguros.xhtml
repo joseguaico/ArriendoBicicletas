@@ -48,11 +48,33 @@
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosRetiroDevolucion.xhtml"><b>Retiro y devolución</b></a></li>
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosBicicletas.xhtml"><b>Bicicletas</b></a></li>
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosAccesorios.xhtml"><b>Accesorios</b></a></li>
-                        <li class="mi-naviagation-item active"><b>Garantías</b></li>
+                        <li class="mi-naviagation-item active"><b>Seguros</b></li>
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/resumenFinalizar.xhtml"><b>Finalizar</b></a></li>
                     </ul>
                     
                 </p:panel>
+                
+                <p:panel>
+                    
+                    <h:form id="formDatosSeguros">
+                        
+                        <p:panel>
+
+                            <br />
+                                <br />
+                                <p:commandButton value="Volver a accesorios" ajax="true" update="formDatosSeguros"
+                                                 actionListener="#{datpsSegurosBeans.onBtnPrevio_Click()}" />
+                                &nbsp;
+                                <p:commandButton value="Continuar a finalizar" ajax="true" update="formDatosSeguros"
+                                         actionListener="#{datpsSegurosBeans.onBtnSiguiente_Click()}" />
+
+                        </p:panel>
+                    
+                    </h:form>
+                    
+                </p:panel>
+                
+                
             </ui:define>
 
         </ui:composition>

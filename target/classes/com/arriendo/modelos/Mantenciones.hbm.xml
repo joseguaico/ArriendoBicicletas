@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20-11-2017 14:03:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.arriendo.modelos.Mantenciones" table="mantenciones" catalog="bd_bicicletas" optimistic-lock="version">
+        <id name="idMantencion" type="int">
+            <column name="ID_Mantencion" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="bicicleta" class="com.arriendo.modelos.Bicicleta" fetch="select">
+            <column name="ID_Bicicleta" not-null="true" />
+        </many-to-one>
+        <property name="fechaDesde" type="timestamp">
+            <column name="FechaDesde" length="19" not-null="true" />
+        </property>
+        <property name="fechaHasta" type="timestamp">
+            <column name="fechaHasta" length="19" />
+        </property>
+        <property name="comentario" type="string">
+            <column name="comentario" length="450" />
+        </property>
+        <property name="monto" type="java.lang.Integer">
+            <column name="monto" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,5 +1,5 @@
 package com.arriendo.modelos;
-// Generated 18-11-2017 19:47:29 by Hibernate Tools 4.3.1
+// Generated 20-11-2017 14:02:58 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

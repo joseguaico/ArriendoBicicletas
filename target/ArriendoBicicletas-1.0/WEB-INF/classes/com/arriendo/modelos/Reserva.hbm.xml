@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-11-2017 19:47:30 by Hibernate Tools 4.3.1 -->
+<!-- Generated 20-11-2017 14:03:01 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.arriendo.modelos.Reserva" table="reserva" catalog="bd_bicicletas" optimistic-lock="version">
         <id name="idReserva" type="int">
             <column name="ID_Reserva" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="arriendo" class="com.arriendo.modelos.Arriendo" fetch="select">
             <column name="ID_Ariendo" />
@@ -38,5 +38,49 @@
         <property name="estadoSincr" type="java.lang.Byte">
             <column name="estado_sincr" />
         </property>
+        <set name="detalleReservas" table="detalle_reserva" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_Reserva" not-null="true" />
+            </key>
+            <one-to-many class="com.arriendo.modelos.DetalleReserva" />
+        </set>
+        <set name="reservaAccesorioses" table="reserva_accesorios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_Reserva" not-null="true" />
+            </key>
+            <one-to-many class="com.arriendo.modelos.ReservaAccesorios" />
+        </set>
+        <set name="multases" table="multas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_Arriendo" not-null="true" />
+            </key>
+            <one-to-many class="com.arriendo.modelos.Multas" />
+        </set>
+        <set name="reservaBicicletas" table="reserva_bicicleta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_Reserva" not-null="true" />
+            </key>
+            <one-to-many class="com.arriendo.modelos.ReservaBicicleta" />
+        </set>
+        <set name="da&#241;os" table="da&#241;o" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_Arriendo" not-null="true" />
+            </key>
+            <one-to-many class="com.arriendo.modelos.Da&#241;o" />
+        </set>
+        <set name="seguros" table="seguros_arriendo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_Arriendo" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.arriendo.modelos.Seguro">
+                <column name="ID_Seguro" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="garantias" table="garantia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_Arriendo" not-null="true" />
+            </key>
+            <one-to-many class="com.arriendo.modelos.Garantia" />
+        </set>
     </class>
 </hibernate-mapping>

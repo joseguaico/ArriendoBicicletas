@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20-11-2017 14:03:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.arriendo.modelos.Da&#241;o" table="da&#241;o" catalog="bd_bicicletas" optimistic-lock="version">
+        <id name="idDa&#241;o" type="int">
+            <column name="ID_Da&#241;o" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="reserva" class="com.arriendo.modelos.Reserva" fetch="select">
+            <column name="ID_Arriendo" not-null="true" />
+        </many-to-one>
+        <property name="fechaRegistro" type="timestamp">
+            <column name="Fecha_Registro" length="19" not-null="true" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="Observaciones" length="500" not-null="true" />
+        </property>
+        <property name="monto" type="int">
+            <column name="Monto" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

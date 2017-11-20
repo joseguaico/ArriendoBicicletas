@@ -99,7 +99,7 @@
                             </p:column>
 
                             <p:column headerText="Rut" class="mi-state-highlight" >
-                                <h:outputText value="#{c.rutConFormato()}-#{c.dv}" />
+                                <h:outputText value="#{c.rutConFormato}-#{c.dv}" />
                             </p:column>
 
                             <p:column headerText="Nombres" class="mi-state-highlight" >
@@ -110,19 +110,13 @@
                                 <h:outputText value="#{c.apellidos}" />
                             </p:column>
                             
-                            <p:column headerText="Estado" class="mi-state-highlight" >
-                                
+                            <p:column headerText="Email" class="mi-state-highlight" >
+                                <h:outputText value="#{c.email}" />
                             </p:column>
 
                         </p:dataTable>
 
                     </h:form>
-                
-                
-                
-                
-                
-                
                 
             </ui:define>
 

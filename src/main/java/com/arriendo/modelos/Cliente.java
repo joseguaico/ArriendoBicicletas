@@ -1,5 +1,5 @@
 package com.arriendo.modelos;
-// Generated 18-11-2017 19:47:29 by Hibernate Tools 4.3.1
+// Generated 20-11-2017 14:02:58 by Hibernate Tools 4.3.1
 
 
 import com.arriendo.utilidades.Utilidades;
@@ -12,8 +12,7 @@ import java.util.Set;
  */
 public class Cliente  implements java.io.Serializable {
 
-
-     private int rutCliente;
+    private int rutCliente;
      private char dv;
      private String nombres;
      private String apellidos;
@@ -25,6 +24,7 @@ public class Cliente  implements java.io.Serializable {
      private String nacionalidad;
      private Byte estadoSincr;
      private Set reservas = new HashSet(0);
+     private String rutConFormato = "";
 
     public Cliente() {
     }
@@ -63,6 +63,8 @@ public class Cliente  implements java.io.Serializable {
     
     public void setRutCliente(int rutCliente) {
         this.rutCliente = rutCliente;
+        
+        this.rutConFormato = Utilidades.formatearNumero((long)this.rutCliente);
     }
     public char getDv() {
         return this.dv;
@@ -142,13 +144,15 @@ public class Cliente  implements java.io.Serializable {
         this.reservas = reservas;
     }
 
-    public String rutConFormato()
-    {
-        return Utilidades.formatearNumero((long)this.rutCliente);
+    public String getRutConFormato() {
+        return rutConFormato;
     }
 
-
-
+    public void setRutConFormato(String rutConFormato) {
+        this.rutConFormato = rutConFormato;
+    }
+    
+    
 }
 
 

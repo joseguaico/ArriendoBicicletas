@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
@@ -7,20 +7,28 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bd_bicicletas</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">adminadmin</property>
-    
     <mapping resource="com/arriendo/modelos/EstadoBicicleta.hbm.xml"/>
+    <mapping resource="com/arriendo/modelos/Rol.hbm.xml"/>
+    <mapping resource="com/arriendo/modelos/ReservaAccesorios.hbm.xml"/>
+    <mapping resource="com/arriendo/modelos/Stocksucursal.hbm.xml"/>
+    <mapping resource="com/arriendo/modelos/Multas.hbm.xml"/>
+    <mapping resource="com/arriendo/modelos/Seguro.hbm.xml"/>
+    <mapping resource="com/arriendo/modelos/Mantenciones.hbm.xml"/>
+    <mapping resource="com/arriendo/modelos/TipoGarantia.hbm.xml"/>
+    <mapping resource="com/arriendo/modelos/Garantia.hbm.xml"/>
     <mapping resource="com/arriendo/modelos/Reserva.hbm.xml"/>
     <mapping resource="com/arriendo/modelos/Usuario.hbm.xml"/>
-    <mapping resource="com/arriendo/modelos/Rol.hbm.xml"/>
+    <mapping resource="com/arriendo/modelos/Voucher.hbm.xml"/>
     <mapping resource="com/arriendo/modelos/Arriendo.hbm.xml"/>
     <mapping resource="com/arriendo/modelos/Cliente.hbm.xml"/>
+    <mapping resource="com/arriendo/modelos/Daño.hbm.xml"/>
     <mapping resource="com/arriendo/modelos/Bicicleta.hbm.xml"/>
     <mapping resource="com/arriendo/modelos/TipoBicicleta.hbm.xml"/>
+    <mapping resource="com/arriendo/modelos/ReservaBicicleta.hbm.xml"/>
     <mapping resource="com/arriendo/modelos/Marca.hbm.xml"/>
+    <mapping resource="com/arriendo/modelos/DetalleReserva.hbm.xml"/>
     <mapping resource="com/arriendo/modelos/Sucursal.hbm.xml"/>
+    <mapping resource="com/arriendo/modelos/TipoDetalleReserva.hbm.xml"/>
     <mapping resource="com/arriendo/modelos/Accesorio.hbm.xml"/>
-    
-    
-    
   </session-factory>
 </hibernate-configuration>

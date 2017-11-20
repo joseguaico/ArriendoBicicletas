@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-11-2017 19:47:30 by Hibernate Tools 4.3.1 -->
+<!-- Generated 20-11-2017 14:03:01 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.arriendo.modelos.Bicicleta" table="bicicleta" catalog="bd_bicicletas" optimistic-lock="version">
         <id name="idBicicleta" type="int">
             <column name="ID_Bicicleta" />
-            <generator class="increment" />
+            <generator class="assigned" />
         </id>
         <many-to-one name="estadoBicicleta" class="com.arriendo.modelos.EstadoBicicleta" fetch="select">
             <column name="ID_Estado" not-null="true" />
@@ -29,5 +29,17 @@
         <property name="estadoSincr" type="java.lang.Byte">
             <column name="estado_sincr" />
         </property>
+        <set name="reservaBicicletas" table="reserva_bicicleta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_Bicicleta" not-null="true" />
+            </key>
+            <one-to-many class="com.arriendo.modelos.ReservaBicicleta" />
+        </set>
+        <set name="mantencioneses" table="mantenciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_Bicicleta" not-null="true" />
+            </key>
+            <one-to-many class="com.arriendo.modelos.Mantenciones" />
+        </set>
     </class>
 </hibernate-mapping>

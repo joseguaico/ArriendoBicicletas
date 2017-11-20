@@ -256,4 +256,24 @@ public class DatosRetiroDevolucionBean implements Serializable
         }
     }
     
+    public void onBtnPrevio_Click()
+    {
+        if(this.validarDatosRetiroDevolucion())
+        { 
+            Sucursal sucursalDesde = this.obtenerSucursalSeleccionada(this.sucursalRetiroSelect);
+            Sucursal sucursalHasta = this.obtenerSucursalSeleccionada(this.sucursalDevolucionSelect);
+            
+            ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+            externalContext.getSessionMap().put("_PARAM_RETIRO-DEV_Sucursal_desde", sucursalDesde);   
+            externalContext.getSessionMap().put("_PARAM_RETIRO-DEV_Sucursal_hasta", sucursalHasta);   
+            externalContext.getSessionMap().put("_PARAM_RETIRO-DEV_fecha_desde", this.fechaRetiro);   
+            externalContext.getSessionMap().put("_PARAM_RETIRO-DEV_fecha_hasta", this.fechaDevolucion);
+            externalContext.getSessionMap().put("_PARAM_RETIRO-DEV_hora_desde", this.horaRetiro);   
+            externalContext.getSessionMap().put("_PARAM_RETIRO-DEV_hora_hasta", this.horaDevolucion);
+            
+            FacesContext facesContext = FacesContext.getCurrentInstance();        
+            facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "/appWeb/arriendos/datosCliente.xhtml?faces-redirect=true");
+            
+        }
+    }
 }

@@ -53,7 +53,7 @@
                         <li class="mi-naviagation-item active"><b>Retiro y devolución</b></li>
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosBicicletas.xhtml"><b>Bicicletas</b></a></li>
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosAccesorios.xhtml"><b>Accesorios</b></a></li>
-                        <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosGarantias.xhtml"><b>Garantías</b></a></li>
+                        <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosSeguros.xhtml"><b>Seguros</b></a></li>
                         <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/resumenFinalizar.xhtml"><b>Finalizar</b></a></li>
                     </ul>
                     
@@ -136,6 +136,9 @@
 
                             <br />
                             <br />
+                            <p:commandButton value="Volver a cliente" ajax="true" update="formDatosRetiroDevolucion"
+                                     actionListener="#{datosRetiroDevolucionBean.onBtnPrevio_Click()}" />
+                            &nbsp;
                             <p:commandButton value="Continuar a bicicletas" ajax="true" update="formDatosRetiroDevolucion"
                                      actionListener="#{datosRetiroDevolucionBean.onBtnSiguiente_Click()}" />
 

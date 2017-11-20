@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20-11-2017 14:03:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.arriendo.modelos.Seguro" table="seguro" catalog="bd_bicicletas" optimistic-lock="version">
+        <id name="idSeguro" type="int">
+            <column name="ID_Seguro" />
+            <generator class="assigned" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="Descripcion" length="150" not-null="true" />
+        </property>
+        <property name="monto" type="int">
+            <column name="Monto" not-null="true" />
+        </property>
+        <property name="desde" type="timestamp">
+            <column name="Desde" length="19" />
+        </property>
+        <property name="hasta" type="timestamp">
+            <column name="Hasta" length="19" />
+        </property>
+        <set name="reservas" table="seguros_arriendo" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="ID_Seguro" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.arriendo.modelos.Reserva">
+                <column name="ID_Arriendo" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

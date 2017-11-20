@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20-11-2017 14:03:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.arriendo.modelos.Voucher" table="voucher" catalog="bd_bicicletas" optimistic-lock="version">
+        <id name="idVoucher" type="int">
+            <column name="ID_Voucher" />
+            <generator class="assigned" />
+        </id>
+        <property name="codigo" type="int">
+            <column name="Codigo" not-null="true" />
+        </property>
+        <property name="monto" type="int">
+            <column name="Monto" not-null="true" />
+        </property>
+        <property name="archivoFisico" type="string">
+            <column name="Archivo_Fisico" length="45" />
+        </property>
+        <property name="fechaRegistro" type="string">
+            <column name="fecha_registro" length="45" />
+        </property>
+        <set name="garantias" table="garantia_voucher" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_Voucher" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.arriendo.modelos.Garantia">
+                <column name="ID_Garantia" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
