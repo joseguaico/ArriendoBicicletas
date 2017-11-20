@@ -1,6 +1,7 @@
 package com.arriendos.gestores;
 
 import com.arriendo.modelos.Bicicleta;
+import com.arriendo.modelos.EstadoBicicleta;
 import com.arriendo.modelos.Marca;
 import com.arriendo.modelos.TipoBicicleta;
 import com.arriendo.utilidades.MyHibernateUtil;
@@ -23,6 +24,7 @@ public class GestionBicicletas
             Query query = session.createQuery("FROM " + Bicicleta.class.getName() + " b "
                         + " JOIN b.marca m " 
                         + " JOIN b.tipoBicicleta t " 
+                        + " JOIN b.estadoBicicleta e"
                     + " WHERE m.idMarca = Case When :ID_MARCA = 0 then m.idMarca Else :ID_MARCA End "
                     + " AND b.modelo LIKE :MODELO "
                            + " ORDER BY m.descripcion ASC "
@@ -41,6 +43,7 @@ public class GestionBicicletas
                     Bicicleta bici = (Bicicleta)tuple[0];
                     bici.setMarca((Marca)tuple[1]);
                     bici.setTipoBicicleta((TipoBicicleta)tuple[2]);
+                    bici.setEstadoBicicleta((EstadoBicicleta)tuple[3]);
                     bicicletas.add(bici);
                 }
             } 

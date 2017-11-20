@@ -79,7 +79,7 @@
                             <p:column style="text-align: center; width: 6em; padding: 2px;" class="mi-state-highlight">
                             </p:column>
 
-                            <p:column headerText="ID Bicicleta" class="mi-state-highlight" >
+                            <p:column headerText="Cód. Bicicleta" class="mi-state-highlight" >
                                 <h:outputText value="#{b.idBicicleta}" />
                             </p:column>
 
@@ -97,6 +97,9 @@
 
                             <p:column headerText="Precio" class="mi-state-highlight" >
                                 <h:outputText value="$ #{b.obtenerPrecioConFormato()}" />
+                            </p:column>
+                            <p:column headerText="Estado" class="mi-state-highlight" >
+                                <h:outputText value="#{b.estadoBicicleta.descripcion}" />
                             </p:column>
                         </p:dataTable>
                     </p:panel>

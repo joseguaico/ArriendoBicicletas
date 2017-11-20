@@ -31,6 +31,10 @@
             
             <ui:define name="contenidoPrincipal">
                 
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{resumenFinalizarBean.onLoad}"/>
+                </f:metadata>
+                
                 <!-- TITULO -->
                 <div class="breadcrumb-holder">   
                     <div class="container-fluid">
@@ -54,6 +58,92 @@
                     
                 </p:panel>
                     
+                <h:form id="formResumen">
+
+                    <p:panel>
+                        
+                    
+                    <p:fieldset legend="Resumen arriendo">
+                                                  
+                        <p:messages id="msgDatosCliente" escape="false"  />
+
+                        <p:panelGrid id="panelDatosCliente"  style="text-align:center;"  styleClass="divCenter panelGridCenter sin-bordes">
+
+                            <p:row>
+                               <p:column>
+                                   <h:outputLabel for="txtCliente" class="mi-label" value="Cliente: " />
+                               </p:column>
+                               <p:column>
+                                   <p:outputLabel id="txtCliente" value="#{resumenFinalizarBean.textoCliente}" />
+                               </p:column>
+                            </p:row>
+                            <p:row>
+                               <p:column>
+                                   <h:outputLabel for="txtRut" class="mi-label" value="Rut cliente: " />
+                               </p:column>
+                               <p:column>
+                                   <p:outputLabel id="txtRut" value="#{resumenFinalizarBean.textoRutCliente}" />
+                               </p:column>
+                            </p:row>
+                            <p:row>
+                               <p:column>
+                                   <h:outputLabel for="txtSucOrigen" class="mi-label" value="Sucursal retiro: " />
+                               </p:column>
+                               <p:column>
+                                   <p:outputLabel id="txtSucOrigen" value="#{resumenFinalizarBean.textoSucOrigen}" />
+                               </p:column>
+                            </p:row>
+                            <p:row>
+                               <p:column>
+                                   <h:outputLabel for="textoFechaOrigen" class="mi-label" value="Fecha retiro: " />
+                               </p:column>
+                               <p:column>
+                                   <p:outputLabel id="textoFechaOrigen" value="#{resumenFinalizarBean.textoFechaOrigen}" />
+                               </p:column>
+                            </p:row>
+                            <p:row>
+                               <p:column>
+                                   <h:outputLabel for="txtSucDestino" class="mi-label" value="Sucursal devolución: " />
+                               </p:column>
+                               <p:column>
+                                   <p:outputLabel id="txtSucDestino" value="#{resumenFinalizarBean.textoSucDestino}" />
+                               </p:column>
+                            </p:row>
+                            <p:row>
+                               <p:column>
+                                   <h:outputLabel for="txtFechaDestino" class="mi-label" value="Fecha devolución: " />
+                               </p:column>
+                               <p:column>
+                                   <p:outputLabel id="txtFechaDestino" value="#{resumenFinalizarBean.textoFechaDestino}" />
+                               </p:column>
+                            </p:row>
+                            <p:row>
+                               <p:column>
+                                   <h:outputLabel for="txtCantBicicletas" class="mi-label" value="Bicicletas seleccionadas: " />
+                               </p:column>
+                               <p:column>
+                                   <p:outputLabel id="txtCantBicicletas" value="#{resumenFinalizarBean.textoBicicletasCantiad}" />
+                               </p:column>
+                            </p:row>
+                            <p:row>
+                               <p:column>
+                                   <h:outputLabel for="txtValorTotal" class="mi-label" value="Valor total: " />
+                               </p:column>
+                               <p:column>
+                                   <p:outputLabel id="txtValorTotal" value="#{resumenFinalizarBean.textoBicicletasTotal}" />
+                               </p:column>
+                            </p:row>
+                        </p:panelGrid>
+                        
+                        
+                        
+                    </p:fieldset>
+                
+                    </p:panel>
+
+                        
+                </h:form>
+                
             </ui:define>
 
         </ui:composition>

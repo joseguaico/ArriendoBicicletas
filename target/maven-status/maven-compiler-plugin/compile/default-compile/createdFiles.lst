@@ -3,6 +3,7 @@ com\arriendo\modelos\Reserva.class
 com\arriendo\controladores\ArriendosBean.class
 com\arriendo\controladores\ClientesBean.class
 com\arriendo\controladores\arriendos\DatosClienteBean.class
+com\arriendo\controladores\arriendos\ResumenFinalizarBean.class
 com\arriendos\gestores\GestionReservas.class
 com\arriendo\controladores\IndexBean.class
 com\arriendo\modelos\Arriendo.class
