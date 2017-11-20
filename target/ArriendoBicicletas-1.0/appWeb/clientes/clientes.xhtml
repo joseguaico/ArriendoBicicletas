@@ -31,6 +31,10 @@
             
             <ui:define name="contenidoPrincipal">
                 
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{clientesBean.onLoad}"/>
+                </f:metadata>
+                
                 <!-- Titulo -->
                 <div class="breadcrumb-holder">   
                     <div class="container-fluid">

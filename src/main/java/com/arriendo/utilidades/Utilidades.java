@@ -130,5 +130,17 @@ public class Utilidades
         
         return null;
     }
+    
+     public static Date stringToDate(String fecha) 
+    {
+        try
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            return sdf.parse(fecha);
+        }
+        catch(Exception ex){}
+        
+        return null;
+    }
 
 }

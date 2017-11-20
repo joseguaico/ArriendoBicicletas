@@ -1,0 +1,366 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html [
+    <!ENTITY nbsp "&#160;"> 
+]>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"      >
+    <body>
+
+        <ui:composition template="./../../templates/mainTemplate.xhtml">
+
+            <ui:define name="tituloPagina">
+                Crear arriendo
+            </ui:define>
+
+             <ui:define name="menuLateralSelect">
+            
+                 
+                <div id="menuDiv" class="main-menu">
+                    <ul id="side-main-menu" class="side-menu list-unstyled"> 
+                        <li class=""><a href="#{facesContext.externalContext.requestContextPath}/appWeb/index.xhtml"> <i class="icon-home"></i><span>Inicio</span></a></li>
+                        <li class=""> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/reservas/reservas.xhtml"><i class="fa fa-wpforms"></i><span>Reservas</span></a></li>
+                        <li class="active"> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/arriendos.xhtml"><i class="fa fa-list-alt "></i><span>Arriendos</span></a></li>
+                        <li class=""> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/clientes/clientes.xhtml"> <i class="fa fa-group"> </i><span>Clientes</span></a></li>
+                        <li class=""> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/bicicletas/bicicletas.xhtml"> <i class="fa fa-bicycle"></i><span>Bicicletas</span></a></li>
+                    </ul>
+                </div>                
+                
+                <p:inputNumber rendered="false" />
+                
+            </ui:define>
+
+            <ui:define name="contenidoPrincipal">
+                
+                <!-- TITULO -->
+                <div class="breadcrumb-holder">   
+                    <div class="container-fluid">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/index.xhtml"><b>Inicio</b></a></li>
+                            <li class="breadcrumb-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/arriendos.xhtml"><b>Arriendos</b></a></li>
+                            <li class="breadcrumb-item active"><b>Crear arriendo</b></li>
+                        </ul>
+                    </div>
+                </div>      
+                
+            <h:form id="formTabContainer">
+                    
+                
+                <!-- TAB CONTAINER -->
+                <p:tabView id="tabContainer" orientation="top" scrollable="true" activeIndex="2">
+                    
+                    <!-- TAB INFO CLIENTE -->
+                    <p:tab id="tabInfoCliente" title="Información del cliente">
+                        
+                        <h:form id="formInfoCliente">
+                            
+                            <br/>
+                                <p:commandButton id="btnAbrirPopupBuscarCliente" icon="fa fa-group" value="&nbsp;&nbsp;Buscar clientes" ajax="true">
+                                    <p:tooltip value="Click aquí para abrir popup de búsqueda de clientes" for="btnAbrirPopupBuscarCliente" />
+                                </p:commandButton>
+                            <br/>
+                            <br/>    
+
+                            <p:panel>
+                            
+                                <p:panelGrid id="panelDatosCliente"  style="text-align:center;"  styleClass="divCenter panelGridCenter sin-bordes">
+                                
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="txtRut" class="mi-label" value="Rut " />
+                                        </p:column>
+                                        <p:column>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                      <p:inputNumber id="txtRut" emptyValue="empty" thousandSeparator="" decimalPlaces="0" 
+                                                                     validatorMessage="*" maxlength="8" maxValue="99999999"  value="#{crearArriendoBean1.clienteSel.rutCliente}" />
+                                                    </td>
+                                                    <td>
+                                                        <h:outputLabel for="txtDv" class="mi-label" value="-" />
+                                                    </td>
+                                                    <td>
+                                                        <p:inputText id="txtDv" value="#{crearArriendoBean1.clienteSel.dv}" maxlength="1" style=" width: 25px;"
+                                                            onkeydown="return dvAllowed(event);" onkeypress="return dvAllowed(event);"  />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </p:column>
+                                    </p:row>                           
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="txtNombres" class="mi-label" value="Nombres: " />                                  
+                                        </p:column>
+                                        <p:column style=" float: left;">
+                                            <p:inputText id="txtNombres" value="#{crearArriendoBean1.clienteSel.nombres}" />                                  
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="txtApellidos" class="mi-label" value="Apellidos: " />                                   
+                                        </p:column>
+                                        <p:column style=" float: left;">
+                                            <p:inputText id="txtApellidos" value="#{crearArriendoBean1.clienteSel.apellidos}" />                                    
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="calFechaNac" class="mi-label" value="Fecha Nac.: " />                                         
+                                        </p:column>
+                                        <p:column style=" float: left;">
+                                            <p:calendar id="calFechaNac" value="#{crearArriendoBean1.clienteSel.fechaNacimiento}" showOn="button" 
+                                                        pattern="dd-MM-yyyy" mask="true" navigator="true" locale="es" converterMessage="">
+                                                <f:convertDateTime pattern="dd-MM-yyyy"  />
+                                            </p:calendar>
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="txtFono" class="mi-label" value="Teléfonos: " />                                         
+                                        </p:column>
+                                        <p:column style=" float: left;">
+                                            <p:inputText id="txtFono" value="#{crearArriendoBean1.clienteSel.telefono}" />                                    
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="txtEmail" class="mi-label" value="Email: " />                                         
+                                        </p:column>
+                                        <p:column style=" float: left;">
+                                            <p:inputText id="txtEmail" value="#{crearArriendoBean1.clienteSel.email}" />                                    
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="txtDireccion" class="mi-label" value="Dirección:: " />                                         
+                                        </p:column>
+                                        <p:column style=" float: left;">
+                                            <p:inputText id="txtDireccion" value="#{crearArriendoBean1.clienteSel.direccion}" />                                    
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="txtNacionalidad" class="mi-label" value="Nacionalidad: " />                                         
+                                        </p:column>
+                                        <p:column style=" float: left;">
+                                            <p:inputText id="txtNacionalidad" value="#{crearArriendoBean.clienteSel.nacionalidad}" />                                    
+                                        </p:column>
+                                    </p:row>
+                                
+                                </p:panelGrid>
+                            
+                            </p:panel>
+                            
+                                
+                        </h:form>
+                
+                    </p:tab>
+                    
+                    <!-- TAB INFO RETIRO Y DEVOLUCION -->
+                    <p:tab id="tablInfoRetiroDevolucion" title="Información de retiro y devolución">
+                        
+                        <h:form id="formRetiroDevolucion">
+                            
+                            <p:panel>
+                                
+                                <p:panelGrid id="panelDatosRetiroDevolucion"  style="text-align:center;"  styleClass="divCenter panelGridCenter sin-bordes">
+
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="ddlSucursalRetiro" class="mi-label" value="Sucursal retiro: " />                                  
+                                        </p:column>
+                                        <p:column style=" float: left; width: 100%;">
+                                            <p:selectOneMenu id="ddlSucursalRetiro" value="#{crearArriendoBean1.sucursalRetiroSelect}" style=" width: 100% !important;">
+                                                <f:selectItems value="#{crearArriendoBean1.sucursalesRetiro}" var="sr"
+                                                               itemLabel="#{sr.descripcionSucursal}" itemValue="#{sr.idSucursal}"/>
+                                            </p:selectOneMenu>                          
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="calFechaRetiro" class="mi-label" value="Fecha retiro: " />                                         
+                                        </p:column>
+                                        <p:column style=" float: left; width: 100%;">
+                                            <p:calendar id="calFechaRetiro" value="#{crearArriendoBean1.fechaRetiro}" showOn="button" 
+                                                        pattern="dd-MM-yyyy" mask="true" navigator="true" locale="es" converterMessage="">
+                                                <f:convertDateTime pattern="dd-MM-yyyy"  />
+                                            </p:calendar>
+                                        </p:column>
+                                    </p:row>     
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="timeHoraRetiro" class="mi-label" value="Hora retiro *" />
+                                        </p:column>
+                                        <p:column style=" float: left;">
+                                            <p:calendar id="timeHoraRetiro" value="#{crearArriendoBean1.horaRetiro}" locale="es" 
+                                                        timeZone="UTC-3"  pattern="HH:mm" timeOnly="true" minHour="08" maxHour="21">
+                                                <f:converter converterId="localTimeCalConverter" />
+                                            </p:calendar>
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="ddlSucursalDevolucion" class="mi-label" value="Sucursal devolución: " />                                  
+                                        </p:column>
+                                        <p:column style=" float: left; width: 100%;">
+                                            <p:selectOneMenu id="ddlSucursalDevolucion" value="#{crearArriendoBean1.sucursalDevolucionSelect}" style=" width: 100% !important;">
+                                                <f:selectItems value="#{crearArriendoBean1.sucursalesDevolucion}" var="sr"
+                                                               itemLabel="#{sr.descripcionSucursal}" itemValue="#{sr.idSucursal}"/>
+                                            </p:selectOneMenu>                          
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="calFechaDevolucion" class="mi-label" value="Fecha devolución: " />                                         
+                                        </p:column>
+                                        <p:column style=" float: left; width: 100%;">
+                                            <p:calendar id="calFechaDevolucion" value="#{crearArriendoBean1.fechaDevolucion}" showOn="button" 
+                                                        pattern="dd-MM-yyyy" mask="true" navigator="true" locale="es" converterMessage="">
+                                                <f:convertDateTime pattern="dd-MM-yyyy"  />
+                                            </p:calendar>
+                                        </p:column>
+                                    </p:row>
+                                    <p:row>
+                                        <p:column>
+                                            <h:outputLabel for="timeHoraDevolucion" class="mi-label" value="Hora devolución *" />
+                                        </p:column>
+                                        <p:column style=" float: left;">
+                                            <p:calendar id="timeHoraDevolucion" value="#{crearArriendoBean1.horaDevolucion}" locale="es" 
+                                                        timeZone="UTC-3"  pattern="HH:mm" timeOnly="true" minHour="08" maxHour="21">
+                                                <f:converter converterId="localTimeCalConverter" />
+                                            </p:calendar>
+                                        </p:column>
+                                    </p:row>
+
+                                </p:panelGrid>
+                                
+                            </p:panel>
+                                               
+                                
+                             
+                        </h:form>
+                        
+                    </p:tab>
+                    
+                    <!-- TAB BICICLETAS -->
+                    <p:tab id="tabBicicletas" title="Bicicletas" >
+                        
+                        <h:form id="formGrillaBicicletas" style="width: 100%;" styleClass="divCenter panelGridCenter">
+                      
+                            <!-- INFO RESUMEN BICICLETAS -->
+                            <p:panelGrid id="panelResumenBicicletasAdded" layout="tabular" columns="5">
+                                
+                                <h:outputLabel for="txtCantidadBicicletasAdded" value="Bicicletas seleccionadas: " />
+                                <p:inputText id="txtCantidadBicicletasAdded" class="mi-disabledInput mi-noShadow" readonly="true" value=" #{crearArriendoBean1.cantBicicletas}" />
+                                
+                                <h:outputLabel for="txtValorTotalBicicletas" value="Valor total: " />
+                                <p:inputText id="txtValorTotalBicicletas" class="mi-disabledInput mi-noShadow"  readonly="true" value=" $ #{crearArriendoBean1.totalBicicletasFormato}" />
+                                
+                                <p:commandButton id="btnAbrirPopupBuscarBicicletas" icon="fa fa-bicycle" value="&nbsp;&nbsp;Buscar bicicletas" ajax="true">
+                                    <p:tooltip value="Click aquí para abrir popup de búsqueda de bicicletas" for="btnAbrirPopupBuscarBicicletas" />
+                                </p:commandButton>
+                                
+                            </p:panelGrid>
+                                                       
+                            
+                            <!--  GRILLA BICICLETAS ADDED-->
+                            <p:panel id="panelGrillaBicicletasAdded" visible="true" >
+                                <p:dataTable id="dtBicicletasAdded" widgetVar="dtBicicletasAdded" var="b" value="#{crearArriendoBean1.bicicletasAdded}" 
+                                        selectionMode="single" 
+                                        rowSelectMode="add"
+                                        rowKey="#{b.idBicicleta}" emptyMessage="No hay bicicletas seleccionadas"
+                                        paginator="false"
+                                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                        rowsPerPageTemplate="5,10,15"
+                                        rows="10"
+                                        >
+                                    <p:column style="text-align: center; width: 6em; padding: 2px;" class="mi-state-highlight">
+                                        
+                                        <p:commandButton id="imgRemoveBicicleta" process="dtBicicletasAdded" icon="fa fa-close" iconPos="left" immediate="true">
+                                            <p:tooltip for="imgRemoveBicicleta" value="Remover esta bicicleta" trackMouse="true" />
+                                            <p:ajax  listener="#{crearArriendoBean1.onImgRemoveBicicleta_click(b)}" event="click" />                               
+                                        </p:commandButton>
+                                        
+                                    </p:column>
+
+                                    <p:column headerText="Código Bicicleta" class="mi-state-highlight" >
+                                        <h:outputText value="#{b.idBicicleta}" />
+                                    </p:column>
+
+                                    <p:column headerText="Marca" class="mi-state-highlight" >
+                                        <h:outputText value="#{b.marca.descripcion}" />
+                                    </p:column>
+
+                                    <p:column headerText="Tipo" class="mi-state-highlight" >
+                                        <h:outputText value="#{b.tipoBicicleta.descripcion}" />
+                                    </p:column>
+
+                                    <p:column headerText="Modelo" class="mi-state-highlight" >
+                                        <h:outputText value="#{b.modelo}" />
+                                    </p:column>
+
+                                    <p:column headerText="Precio" class="mi-state-highlight" >
+                                        <h:outputText value="$ #{b.obtenerPrecioConFormato()}" />
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panel>
+                            
+                        </h:form>
+                        
+                    </p:tab>
+                    
+                    <!-- ACCESORIOS -->
+                    <p:tab title="Accesorios">
+                        
+                    </p:tab>
+                    
+                    <!-- GARANTIAS -->
+                    <p:tab title="Garantía">
+                        
+                        
+                        
+                        
+                    </p:tab>
+                    
+                </p:tabView>
+                
+                  
+                <p:panel id="panelOpciones">
+
+                    <p:growl id="growl" showDetail="true" sticky="true" class="div.ui-growl"/>
+                    
+                   <p:commandButton id="btnContinuar" value="Continuar" immediate="true" validateClient="false" ajax="true" 
+                                    actionListener="#{crearArriendoBean1.onBtnContinuar_click}" form="formTabContainer" />
+                   &nbsp;&nbsp;
+                   <p:commandButton id="btnCancelar" value="Cancelar" />
+
+                </p:panel>
+                
+                
+            </h:form>
+     
+            <h:form id="formOpciones" >
+                
+                <style type="text/css">
+                
+                    div.ui-growl {
+                        left: 50%;
+                        right: 0;
+                        margin-left:-150px;
+                        top: 30%;
+                     }
+
+                </style>
+              
+
+            </h:form>
+                
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

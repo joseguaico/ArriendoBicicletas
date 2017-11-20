@@ -19,7 +19,7 @@ public class ArriendosBean implements Serializable
     public void onBtnCrearNuevoSin_Click()
     {
         FacesContext context = FacesContext.getCurrentInstance();
-        context.getApplication().getNavigationHandler().handleNavigation(context, null, "/appWeb/arriendos/crearArriendo.xhtml?faces-redirect=true");
+        context.getApplication().getNavigationHandler().handleNavigation(context, null, "/appWeb/arriendos/datosCliente.xhtml?faces-redirect=true");
     }
     
 }

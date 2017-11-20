@@ -2,6 +2,7 @@ com\arriendos\gestores\GestionClientes.class
 com\arriendo\modelos\Reserva.class
 com\arriendo\controladores\ArriendosBean.class
 com\arriendo\controladores\ClientesBean.class
+com\arriendo\controladores\arriendos\DatosClienteBean.class
 com\arriendos\gestores\GestionReservas.class
 com\arriendo\controladores\IndexBean.class
 com\arriendo\modelos\Arriendo.class
@@ -11,10 +12,11 @@ com\arriendo\modelos\Rol.class
 com\arriendo\modelos\Marca.class
 com\arriendo\modelos\Cliente.class
 com\arriendo\controladores\ReservasBean.class
+com\arriendo\controladores\CrearArriendoBean1.class
+com\arriendo\controladores\arriendos\DatosBicicletasBean.class
 com\arriendos\gestores\GestionMarcas.class
 com\arriendo\controladores\MainTemplateBean.class
 com\arriendo\converters\LocalTimeCalConverter.class
-com\arriendo\controladores\CrearArriendoBean.class
 com\arriendo\modelos\TipoBicicleta.class
 com\arriendo\utilidades\Utilidades.class
 com\arriendo\utilidades\ValoresAuxiliares.class

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html [
+    <!ENTITY nbsp "&#160;"> 
+]>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+
+        <ui:composition template="./../../templates/mainTemplate.xhtml">
+
+            <ui:define name="tituloPagina">
+                Arriendos
+            </ui:define>
+
+            <ui:define name="menuLateralSelect">
+               
+                <div id="menuDiv" class="main-menu">
+                    <ul id="side-main-menu" class="side-menu list-unstyled"> 
+                        <li class=""><a href="#{facesContext.externalContext.requestContextPath}/appWeb/index.xhtml"> <i class="icon-home"></i><span>Inicio</span></a></li>
+                        <li class=""> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/reservas/reservas.xhtml"><i class="fa fa-wpforms"></i><span>Reservas</span></a></li>
+                        <li class="active"> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/arriendos.xhtml"><i class="fa fa-list-alt "></i><span>Arriendos</span></a></li>
+                        <li class=""> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/clientes/clientes.xhtml"> <i class="fa fa-group"> </i><span>Clientes</span></a></li>
+                        <li class=""> <a href="#{facesContext.externalContext.requestContextPath}/appWeb/bicicletas/bicicletas.xhtml"> <i class="fa fa-bicycle"></i><span>Bicicletas</span></a></li>
+                    </ul>
+                </div>                
+                
+            </ui:define>
+            
+            <ui:define name="contenidoPrincipal">
+                
+                <!-- TITULO -->
+                <div class="breadcrumb-holder">   
+                    <div class="container-fluid">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/index.xhtml"><b>Inicio</b></a></li>
+                            <li class="breadcrumb-item active"><b>Arriendos</b></li>
+                        </ul>
+                    </div>
+                </div>    
+                
+                <p:panel>
+                    
+                    <ul class="mi-naviagation">
+                        <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosCliente.xhtml"><b>Cliente</b></a></li>
+                        <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosRetiroDevolucion.xhtml"><b>Retiro y devolución</b></a></li>
+                        <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosBicicletas.xhtml"><b>Bicicletas</b></a></li>
+                        <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/datosAccesorios.xhtml"><b>Accesorios</b></a></li>
+                        <li class="mi-naviagation-item active"><b>Garantías</b></li>
+                        <li class="mi-naviagation-item"><a href="#{facesContext.externalContext.requestContextPath}/appWeb/arriendos/resumenFinalizar.xhtml"><b>Finalizar</b></a></li>
+                    </ul>
+                    
+                </p:panel>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

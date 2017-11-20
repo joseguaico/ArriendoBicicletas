@@ -65,17 +65,18 @@ public class ClientesBean implements Serializable
     public void onImgAgregarArriendo_click(Cliente cliente)
     {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        externalContext.getSessionMap().put("_PARAM_CLIENTE_SEL", cliente);
-        
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        
-        facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "/appWeb/arriendos/crearArriendo.xhtml?faces-redirect=true");
+        externalContext.getSessionMap().put("_PARAM_CLIENTE_SEL", cliente);        
+        FacesContext facesContext = FacesContext.getCurrentInstance();        
+        facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "/appWeb/arriendos/datosCliente.xhtml?faces-redirect=true");
     }
     
-    
-    @PostConstruct
-    private void onInit()
+    public void onLoad()
     {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        if (!fc.isPostback() )
+        {
+            this.buscarClientes();
+        }
     }
     
     public void onBtnBuscarClick()
