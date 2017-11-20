@@ -7,6 +7,7 @@ com\arriendos\gestores\GestionReservas.class
 com\arriendo\controladores\IndexBean.class
 com\arriendo\modelos\Arriendo.class
 com\arriendo\modelos\Bicicleta.class
+com\arriendo\controladores\arriendos\DatosRetiroDevolucionBean.class
 com\arriendo\modelos\Usuario.class
 com\arriendo\modelos\Rol.class
 com\arriendo\modelos\Marca.class

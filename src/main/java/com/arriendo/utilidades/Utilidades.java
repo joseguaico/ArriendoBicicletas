@@ -142,5 +142,17 @@ public class Utilidades
         
         return null;
     }
+     public static Date stringToDate(String fecha, String hora) 
+    {
+        try
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+            return sdf.parse(fecha + " " + hora);
+        }
+        catch(Exception ex){}
+        
+        return null;
+    }
+     
 
 }

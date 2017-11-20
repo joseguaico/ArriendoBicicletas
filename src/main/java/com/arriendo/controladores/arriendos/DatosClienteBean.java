@@ -18,7 +18,6 @@ import org.primefaces.component.messages.Messages;
 @ManagedBean(name="datosClienteBean")
 public class DatosClienteBean implements Serializable
 {
-    
     // Para agregar/editar Cliente
     private String rut = "";
     private String dv = "";
@@ -178,118 +177,7 @@ public class DatosClienteBean implements Serializable
             
         }
     }
- 
-    public boolean validarDatosCliente1() 
-    {
-        FacesContext context = FacesContext.getCurrentInstance();
-        UIComponent component = context.getViewRoot().findComponent("formInfoCliente");
-        UIInput txtRut = (UIInput) component.findComponent("txtRut");
-        UIInput txtDv = (UIInput) component.findComponent("txtDv");
-        UIInput txtNombres = (UIInput) component.findComponent("txtNombres");
-        UIInput txtApellidos = (UIInput) component.findComponent("txtApellidos");
-        UIInput calFechaNac = (UIInput) component.findComponent("calFechaNac");
-        UIInput txtFono = (UIInput) component.findComponent("txtFono");
-        UIInput txtEmail = (UIInput) component.findComponent("txtEmail");
-        UIInput txtNacionalidad = (UIInput) component.findComponent("txtNacionalidad");
-        Messages messages = (Messages)component.findComponent("msgDatosCliente");
-        messages.setStyle("");  
-       
-        boolean validarRut = true;
-        
-        if (txtRut.getSubmittedValue() == null && txtDv.getSubmittedValue() == null)
-        {
-            validarRut = false;
-        }
-        
-        if(validarRut)
-        {
-            txtRut.setValid(txtRut.getSubmittedValue()==null || !txtRut.getSubmittedValue().toString().trim().isEmpty());
-            txtDv.setValid(txtDv.getSubmittedValue()==null || !txtDv.getSubmittedValue().toString().trim().isEmpty());
-        }
-        txtNombres.setValid(!txtNombres.getSubmittedValue().toString().trim().isEmpty());
-        txtApellidos.setValid(!txtApellidos.getSubmittedValue().toString().trim().isEmpty());
-        calFechaNac.setValid(!calFechaNac.getSubmittedValue().toString().trim().isEmpty());
-        txtFono.setValid(!txtFono.getSubmittedValue().toString().trim().isEmpty());
-        txtEmail.setValid(!txtEmail.getSubmittedValue().toString().trim().isEmpty());
-        txtNacionalidad.setValid(!txtNacionalidad.getSubmittedValue().toString().trim().isEmpty());
-        
-        boolean isValid = true;
-        String errorMsg = "";
-        
-        if(validarRut == true)
-        {
-            if ( txtRut.getSubmittedValue().toString().trim().isEmpty() || txtDv.getSubmittedValue().toString().trim().isEmpty())
-            {
-                isValid = false;
-                errorMsg = " * Campos obligatorios";
-            }
-        }
-
-        if (  txtNombres.getSubmittedValue().toString().trim().isEmpty() || txtApellidos.getSubmittedValue().toString().trim().isEmpty()
-          || calFechaNac.getSubmittedValue().toString().trim().isEmpty() || txtFono.getSubmittedValue().toString().trim().isEmpty()
-          || txtEmail.getSubmittedValue().toString().trim().isEmpty() || txtNacionalidad.getSubmittedValue().toString().trim().isEmpty()
-                ) 
-        {
-            isValid = false;
-            errorMsg = " * Campos obligatorios";
-        }
-        
-        // Valida Rut
-        if (validarRut)
-        {
-            if (!txtRut.getSubmittedValue().toString().trim().isEmpty() && !txtDv.getSubmittedValue().toString().trim().isEmpty())
-            {
-                int rut = Integer.parseInt(txtRut.getSubmittedValue().toString().trim());
-                char dv = txtDv.getSubmittedValue().toString().toUpperCase().trim().charAt(0);
-
-                if (!Utilidades.validarRut(rut, dv))
-                {
-                    isValid = false;
-                    errorMsg += "<br />El rut ingresado es incorrecto";
-                    txtRut.setValid(false);
-                    txtDv.setValid(false);
-                }
-            }
-        }
-        
-        // Valida Fecha nacimiento
-        if (!calFechaNac.getSubmittedValue().toString().trim().isEmpty())
-        {
-            String fechaNac = calFechaNac.getSubmittedValue().toString().trim();
-
-            if (!Utilidades.validarFechaConFormato(fechaNac))
-            {
-                isValid = false;
-                errorMsg += "<br />Fecha Nac. no es válida";
-                calFechaNac.setValid(false);
-            }
-        }
-        // Valida Email
-        if (!txtEmail.getSubmittedValue().toString().trim().isEmpty())
-        {
-            String email = txtEmail.getSubmittedValue().toString().trim();
-
-            if (!Utilidades.validarEmail(email))
-            {
-                isValid = false;
-                errorMsg += "<br />El email ingresado no es válido";
-                txtEmail.setValid(false);
-            }
-        }
-        
-        if(isValid){
-            //FacesMessage msg = new FacesMessage("OK", "OK");
-            //FacesContext.getCurrentInstance().addMessage("formDetalle:msgAddCliente", msg);
-            messages.setStyle("display:none");
-        }else{
-            
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMsg, errorMsg);
-            FacesContext.getCurrentInstance().addMessage("formInfoCliente:msgDatosCliente", msg);
-        }      
-        return isValid;
-    }
-    
-     public boolean validarDatosCliente() 
+    public boolean validarDatosCliente() 
     {
         FacesContext context = FacesContext.getCurrentInstance();
         UIComponent component = context.getViewRoot().findComponent("formInfoCliente");
